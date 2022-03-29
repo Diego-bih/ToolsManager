@@ -89,6 +89,11 @@ public class User {
     public User(){
         
     }
+
+    @Override
+    public String toString() {
+        return id + "," + nom + "," + llinatge + "," + username + "," + email + "," + password + "," + foto + "," + fotoMimeType;
+    }
     
     int id;
     String nom;
