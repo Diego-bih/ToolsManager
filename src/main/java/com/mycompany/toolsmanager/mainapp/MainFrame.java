@@ -12,7 +12,7 @@ import com.mycompany.toolsmanager.startapp.Login;
  * @author Diego Ramirez
  */
 public class MainFrame extends javax.swing.JFrame {
-
+    public static  boolean logged = false;
     /**
      * Creates new form MainFrame
      */

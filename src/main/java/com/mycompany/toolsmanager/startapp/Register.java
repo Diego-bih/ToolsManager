@@ -155,7 +155,7 @@ public class Register extends javax.swing.JDialog {
             BufferedReader br = new BufferedReader(new FileReader(USERSPATH));
             String line;
             ArrayList<User> uArrayList = new ArrayList<>();
-            User user = new User((int) br.lines().count(),txtNom.getText(),txtLlinatges.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), "", "");
+            User user = new User((int) br.lines().count(),txtNom.getText(),txtLlinatges.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), "http://dummyimage.com/333x302.png/dddddd/000000", "image/png");
             uArrayList.add(user);
             for(User u: uArrayList){
             bw.write(u.toString());
