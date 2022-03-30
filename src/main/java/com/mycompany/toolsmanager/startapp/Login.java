@@ -125,6 +125,7 @@ public class Login extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
@@ -165,6 +166,8 @@ public class Login extends javax.swing.JDialog {
                         MainFrame.logged = true;
                         this.dispose();
                         getParent().setVisible(true);
+                    }else{
+                        
                     }
                 }
                
@@ -172,10 +175,7 @@ public class Login extends javax.swing.JDialog {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            warningMessage("El correo electrónico o la contraseña que ha introducido son incorrectos.");
         }
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
                
     }//GEN-LAST:event_jButton1ActionPerformed
 
