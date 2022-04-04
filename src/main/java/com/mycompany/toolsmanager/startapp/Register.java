@@ -5,15 +5,20 @@
  */
 package com.mycompany.toolsmanager.startapp;
 
+import static com.mycompany.toolsmanager.constants.Constants.NOIMAGE;
 import static com.mycompany.toolsmanager.constants.Constants.USERSPATH;
+import com.mycompany.toolsmanager.mainapp.MainFrame;
 import com.mycompany.toolsmanager.models.User;
+import com.mycompany.toolsmanager.utils.Utils;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
 import java.awt.Dialog;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,6 +28,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -42,6 +52,15 @@ public class Register extends javax.swing.JDialog {
     public Register(Dialog owner, boolean modal) {
         super(owner, modal);
         initComponents();
+        BufferedImage originalImage = null;
+        try{
+            originalImage= ImageIO.read(new File(NOIMAGE));
+            ImageIcon icon = Utils.resizeImageIcon(originalImage,lblImage.getWidth(),lblImage.getHeight());
+            lblImage.setIcon(icon);
+          }
+        catch(IOException ioe){
+              ioe.printStackTrace();
+          }
     }
 
     /**
@@ -53,32 +72,36 @@ public class Register extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        txtNom = new javax.swing.JTextField();
-        txtLlinatges = new javax.swing.JTextField();
+        lblRegister = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblSurname = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
+        lblEmail = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtSurname = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtImageChooser = new javax.swing.JTextField();
+        lblProfilePicture = new javax.swing.JLabel();
+        btnSearchImage = new javax.swing.JButton();
+        lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Register");
+        lblRegister.setText("Registre");
 
-        jLabel2.setText("Nom");
+        lblName.setText("Nom");
 
-        jLabel3.setText("Llinatges");
+        lblSurname.setText("Llinatges");
 
-        jLabel4.setText("UserName");
+        lblUserName.setText("Nom Usuari");
 
-        jLabel5.setText("Email");
+        lblEmail.setText("Email");
 
-        jLabel6.setText("Password");
+        lblPassword.setText("Contrasenya");
 
         jButton1.setText("Registre");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,59 +110,80 @@ public class Register extends javax.swing.JDialog {
             }
         });
 
+        lblProfilePicture.setText("Imagen de perfil");
+
+        btnSearchImage.setText("Buscar");
+        btnSearchImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchImageActionPerformed(evt);
+            }
+        });
+
+        lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noImage.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(103, 103, 103)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(176, 176, 176)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtLlinatges, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton1)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                        .addGap(105, 105, 105)
+                        .addComponent(lblRegister))
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(btnSearchImage)
+                        .addComponent(lblProfilePicture)
+                        .addComponent(lblSurname)
+                        .addComponent(lblName)
+                        .addComponent(txtName)
+                        .addComponent(txtSurname)
+                        .addComponent(txtUsername)
+                        .addComponent(txtEmail)
+                        .addComponent(lblUserName)
+                        .addComponent(lblEmail)
+                        .addComponent(lblPassword)
+                        .addComponent(txtPassword)
+                        .addComponent(txtImageChooser)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(jLabel1)
+                .addComponent(lblRegister)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(lblSurname)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSurname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtLlinatges, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUserName)
+                .addGap(2, 2, 2)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
+                .addGap(11, 11, 11)
+                .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(7, 7, 7)
+                .addComponent(lblPassword)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(lblProfilePicture)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtImageChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(btnSearchImage)
+                .addGap(18, 18, 18)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -150,14 +194,19 @@ public class Register extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        try {
+         try {
             FileWriter fw = new FileWriter(USERSPATH, true);
             BufferedWriter bw = new BufferedWriter(fw);
             BufferedReader br = new BufferedReader(new FileReader(USERSPATH));
             String line;
             ArrayList<User> uArrayList = new ArrayList<>();
-            User user = new User((int) br.lines().count(),txtNom.getText(),txtLlinatges.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), "http://dummyimage.com/333x302.png/dddddd/000000", "image/png");
+            if(txtImageChooser.getText() == null){
+            User user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), NOIMAGE, "image/png");
             uArrayList.add(user);
+            }else{
+            User user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), txtImageChooser.getText(), "image/png");
+            uArrayList.add(user);
+            }
             for(User u: uArrayList){
             bw.write(u.toString());
             bw.flush();
@@ -171,6 +220,24 @@ public class Register extends javax.swing.JDialog {
         }      
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnSearchImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchImageActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        int returnOption = fileChooser.showOpenDialog(this);
+        if (returnOption == JFileChooser.APPROVE_OPTION){
+            txtImageChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());;
+            try {
+                BufferedImage profileBufferedImage = ImageIO.read(fileChooser.getSelectedFile());;
+                ImageIcon icon  = Utils.resizeImageIcon(profileBufferedImage, lblImage.getWidth(), lblImage.getHeight());;
+                lblImage.setIcon(icon);
+            }
+            catch(IOException ioe) {
+                ioe.printStackTrace();
+            }
+        }
+        
+    }//GEN-LAST:event_btnSearchImageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,17 +282,21 @@ public class Register extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSearchImage;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblProfilePicture;
+    private javax.swing.JLabel lblRegister;
+    private javax.swing.JLabel lblSurname;
+    private javax.swing.JLabel lblUserName;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtLlinatges;
-    private javax.swing.JTextField txtNom;
+    private javax.swing.JTextField txtImageChooser;
+    private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPassword;
+    private javax.swing.JTextField txtSurname;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

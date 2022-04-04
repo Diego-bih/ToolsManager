@@ -10,5 +10,6 @@ package com.mycompany.toolsmanager.constants;
  * @author Diego Ramirez
  */
 public class Constants {
-    final public static String USERSPATH = "C:\\Users\\Diego Ramirez\\AppData\\Local\\ToolsManager\\data\\Usuaris.csv";
+    final public static String USERSPATH = System.getProperty("user.home") + "\\AppData\\Local\\ToolsManager\\data\\Usuaris.csv";
+    final public static String NOIMAGE = System.getProperty("user.home") + "\\AppData\\Local\\ToolsManager\\images\\noimage\\noImage.png";
 }
