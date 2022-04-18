@@ -14,6 +14,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -24,7 +26,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Diego Ramirez
  */
 public class MainFrame extends javax.swing.JFrame {
-    public static  boolean logged = false;
+    public static boolean logged = false;
     /**
      * Creates new form MainFrame
      */
@@ -221,16 +223,23 @@ public class MainFrame extends javax.swing.JFrame {
                     //break;
                 }
                 br.close();
-                for (User u : uArrayList) {
-                     for(int i = 0; i <= Integer.parseInt(txtRegister.getText());i++){         
+                for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
+                    Random r = new Random();
+                    int linea = r.nextInt(uArrayList.size());
+                    User usuariAleatori = uArrayList.get(linea);
+                    int idaleatori = usuariAleatori.getId();
                      long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
                      long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
                      long diff = end - offset + 1;
                      Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
                      System.out.println(rand);
-                     data.data(u.getId(), rand);
+                     int min = (int) jspMin.getValue();
+                     int max = (int) jspMax.getValue();
+                     int rndInt = r.nextInt(max - min) + min;
+                     long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                     Timestamp rand2 = new Timestamp(rand.getTime() + plus);
+                     data.data(idaleatori,rand,rand2);
                      }
-                }
                 data.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -239,9 +248,6 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCreateDataActionPerformed
 
-    public void timestamp(){
-       
-    }
     /**
      * @param args the command line arguments
      */

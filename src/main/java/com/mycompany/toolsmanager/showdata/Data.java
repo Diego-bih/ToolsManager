@@ -29,10 +29,11 @@ public class Data extends javax.swing.JDialog {
     public Data(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        txaData.append("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
     }
     
-    public void data(int id, Timestamp time){
-        txaData.append(String.valueOf(id) + "," + time + "\n");
+    public void data(int id, Timestamp timeini, Timestamp timefin){   
+        txaData.append(String.valueOf(id) + "," + timeini + "," + timefin + "\n");
     }
 
     /**
@@ -129,11 +130,12 @@ public class Data extends javax.swing.JDialog {
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         // TODO add your handling code here:           
-        int returnOption = fileChooser.showOpenDialog(this);
+        int returnOption = fileChooser.showSaveDialog(this);
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         if (returnOption == JFileChooser.APPROVE_OPTION){
             txtUsuarisData.setText(fileChooser.getSelectedFile().getAbsolutePath());
-         
         }
+        
     }//GEN-LAST:event_btnSelectActionPerformed
 
     /**
