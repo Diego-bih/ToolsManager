@@ -44,23 +44,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
-        lblTitle = new javax.swing.JLabel();
-        txtFileChooser = new javax.swing.JTextField();
-        btnSelectUser = new javax.swing.JButton();
-        lblFile = new javax.swing.JLabel();
-        lblDates = new javax.swing.JLabel();
-        txtDateIni = new javax.swing.JTextField();
-        txtDateFinal = new javax.swing.JTextField();
-        lblInitial = new javax.swing.JLabel();
-        lblFinal = new javax.swing.JLabel();
-        txtRegister = new javax.swing.JTextField();
-        lblRegisterNum = new javax.swing.JLabel();
-        btnCreateData = new javax.swing.JButton();
-        lblSession = new javax.swing.JLabel();
-        lblMin = new javax.swing.JLabel();
-        lblMax = new javax.swing.JLabel();
-        jspMin = new javax.swing.JSpinner();
-        jspMax = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        mnuBar = new javax.swing.JMenuBar();
+        mniRandomUsage = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        mniRandomAttempts = new javax.swing.JMenu();
+        mniInventoryData = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -69,123 +60,50 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        lblTitle.setText("ToolsManager");
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("ToolsManager");
 
-        btnSelectUser.setText("Select Usuaris");
-        btnSelectUser.addActionListener(new java.awt.event.ActionListener() {
+        mniRandomUsage.setText("File");
+
+        jMenuItem1.setText("Random Usage");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSelectUserActionPerformed(evt);
+                jMenuItem1ActionPerformed(evt);
             }
         });
+        mniRandomUsage.add(jMenuItem1);
 
-        lblFile.setText("Selecciona el fichero de usuarios");
+        jMenuItem2.setText("Random Attempts");
+        mniRandomUsage.add(jMenuItem2);
 
-        lblDates.setText("Elige una fecha de inicio y de fina l(yyyy-MM-dd HH:mm:ss)");
+        jMenuItem3.setText("Inventory Data");
+        mniRandomUsage.add(jMenuItem3);
 
-        txtDateIni.setText("2021-05-21 12:00:00");
+        mnuBar.add(mniRandomUsage);
 
-        txtDateFinal.setText("2021-05-21 20:00:00");
+        mniRandomAttempts.setText("Edit");
+        mnuBar.add(mniRandomAttempts);
 
-        lblInitial.setText("Inicio");
+        mniInventoryData.setText("Help");
+        mnuBar.add(mniInventoryData);
 
-        lblFinal.setText("Final");
-
-        lblRegisterNum.setText("Numero de registros");
-
-        btnCreateData.setText("Create data");
-        btnCreateData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateDataActionPerformed(evt);
-            }
-        });
-
-        lblSession.setText("Tiempo de sesión");
-
-        lblMin.setText("Min");
-
-        lblMax.setText("Max");
+        setJMenuBar(mnuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
-                                .addComponent(btnSelectUser))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(212, 212, 212)
-                                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(lblFile))
-                        .addContainerGap(95, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSession)
-                            .addComponent(lblDates)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtDateIni, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblInitial)
-                                    .addComponent(lblMin))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFinal)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(lblMax)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(txtDateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jspMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblRegisterNum))
-                                .addGap(38, 38, 38)
-                                .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(btnCreateData)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addGap(209, 209, 209)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(231, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(lblFile)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSelectUser))
-                .addGap(18, 18, 18)
-                .addComponent(lblDates)
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblInitial)
-                    .addComponent(lblFinal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDateIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblSession)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMin)
-                    .addComponent(lblMax)
-                    .addComponent(jspMin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRegisterNum)
-                    .addComponent(btnCreateData))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addGap(42, 42, 42)
+                .addComponent(jLabel1)
+                .addContainerGap(397, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,55 +116,11 @@ public class MainFrame extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
-    private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-            txtFileChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());;
-    }//GEN-LAST:event_btnSelectUserActionPerformed
-
-    private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
-        // TODO add your handling code here:
-            Data data = new Data(this, true);
-            String cadena;
-            BufferedReader br;
-            try {
-            br = new BufferedReader(new FileReader(txtFileChooser.getText()));
-            ArrayList<User> uArrayList = new ArrayList<>();
-            br.readLine();
-                while ((cadena = br.readLine()) != null) {
-                    String[] spliter = cadena.split(",");
-                    uArrayList.add(new User(Integer.parseInt(spliter[0]), spliter[1], spliter[2],spliter[3],spliter[4],spliter[5],spliter[6],spliter[7]));
-                    //break;
-                }
-                br.close();
-                for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
-                    Random r = new Random();
-                    int linea = r.nextInt(uArrayList.size());
-                    User usuariAleatori = uArrayList.get(linea);
-                    int idaleatori = usuariAleatori.getId();
-                     long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
-                     long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
-                     long diff = end - offset + 1;
-                     Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
-                     System.out.println(rand);
-                     int min = (int) jspMin.getValue();
-                     int max = (int) jspMax.getValue();
-                     int rndInt = r.nextInt(max - min) + min;
-                     long plus = TimeUnit.MINUTES.toMillis(rndInt);
-                     Timestamp rand2 = new Timestamp(rand.getTime() + plus);
-                     data.data(idaleatori,rand,rand2);
-                     }
-                data.setVisible(true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnCreateDataActionPerformed
+        RandomUsageDialog rud = new RandomUsageDialog(this, true);
+        rud.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,23 +158,14 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCreateData;
-    private javax.swing.JButton btnSelectUser;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JSpinner jspMax;
-    private javax.swing.JSpinner jspMin;
-    private javax.swing.JLabel lblDates;
-    private javax.swing.JLabel lblFile;
-    private javax.swing.JLabel lblFinal;
-    private javax.swing.JLabel lblInitial;
-    private javax.swing.JLabel lblMax;
-    private javax.swing.JLabel lblMin;
-    private javax.swing.JLabel lblRegisterNum;
-    private javax.swing.JLabel lblSession;
-    private javax.swing.JLabel lblTitle;
-    private javax.swing.JTextField txtDateFinal;
-    private javax.swing.JTextField txtDateIni;
-    private javax.swing.JTextField txtFileChooser;
-    private javax.swing.JTextField txtRegister;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenu mniInventoryData;
+    private javax.swing.JMenu mniRandomAttempts;
+    private javax.swing.JMenu mniRandomUsage;
+    private javax.swing.JMenuBar mnuBar;
     // End of variables declaration//GEN-END:variables
 }

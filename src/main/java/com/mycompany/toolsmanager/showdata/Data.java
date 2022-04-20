@@ -6,6 +6,7 @@
 package com.mycompany.toolsmanager.showdata;
 
 import java.awt.Desktop;
+import java.awt.Dialog;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -28,6 +29,11 @@ public class Data extends javax.swing.JDialog {
      */
     public Data(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    
+    public Data(Dialog owner, boolean modal) {
+        super(owner, modal);
         initComponents();
         txaData.append("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
     }
