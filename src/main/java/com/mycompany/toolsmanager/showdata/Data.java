@@ -24,22 +24,40 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Data extends javax.swing.JDialog {
     JFileChooser fileChooser = new JFileChooser();
+    public static boolean usage = false;
+    public static boolean attempts = false;
     /**
      * Creates new form Data
      */
     public Data(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
     
     public Data(Dialog owner, boolean modal) {
         super(owner, modal);
         initComponents();
-        txaData.append("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
+    }
+    
+    public void randomusage()
+    {
+        txaData.removeAll();
+        txaData.setText("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
+    }
+    
+     public void randomattempts()
+    {
+        txaData.removeAll();
+        txaData.setText("idIntent,idUsuari,idNivell,inicioIntentTimestamp,finIntentTimeStamp" + "\n");  
     }
     
     public void data(int id, Timestamp timeini, Timestamp timefin){   
         txaData.append(String.valueOf(id) + "," + timeini + "," + timefin + "\n");
+    }
+    
+     public void datattempts(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){   
+        txaData.append(String.valueOf(id) + "," + String.valueOf(idusuari) + "," + String.valueOf(idnivell)+ "," + timeini + "," + timefin + "\n");
     }
 
     /**

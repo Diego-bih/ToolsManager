@@ -86,7 +86,8 @@ public class User {
         this.fotoMimeType = fotoMimeType;
     }
     
-    public User(){
+    public User(int id){
+        this.id = id;
         
     }
 

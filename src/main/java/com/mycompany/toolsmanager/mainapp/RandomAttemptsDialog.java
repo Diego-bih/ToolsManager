@@ -6,6 +6,7 @@
 package com.mycompany.toolsmanager.mainapp;
 
 import com.mycompany.toolsmanager.models.User;
+import com.mycompany.toolsmanager.models.Levels;
 import com.mycompany.toolsmanager.showdata.Data;
 import com.mycompany.toolsmanager.startapp.Login;
 import java.io.BufferedReader;
@@ -25,12 +26,12 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Diego Ramirez
  */
-public class RandomUsageDialog extends javax.swing.JDialog {
+public class RandomAttemptsDialog extends javax.swing.JDialog {
 
     /**
-     * Creates new form RandomUsageDialog
+     * Creates new form RandomAttemptsDialog
      */
-    public RandomUsageDialog(java.awt.Frame parent, boolean modal) {
+    public RandomAttemptsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -44,42 +45,28 @@ public class RandomUsageDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSelectUser = new javax.swing.JButton();
         txtRegister = new javax.swing.JTextField();
+        lblFile = new javax.swing.JLabel();
         lblRegisterNum = new javax.swing.JLabel();
+        lblDates = new javax.swing.JLabel();
         btnCreateData = new javax.swing.JButton();
+        txtDateIni = new javax.swing.JTextField();
         lblSession = new javax.swing.JLabel();
+        txtDateFinal = new javax.swing.JTextField();
         lblMin = new javax.swing.JLabel();
+        lblInitial = new javax.swing.JLabel();
         lblMax = new javax.swing.JLabel();
+        lblFinal = new javax.swing.JLabel();
         jspMin = new javax.swing.JSpinner();
         jspMax = new javax.swing.JSpinner();
         lblTitle = new javax.swing.JLabel();
-        txtFileChooser = new javax.swing.JTextField();
-        btnSelectUser = new javax.swing.JButton();
-        lblFile = new javax.swing.JLabel();
-        lblDates = new javax.swing.JLabel();
-        txtDateIni = new javax.swing.JTextField();
-        txtDateFinal = new javax.swing.JTextField();
-        lblInitial = new javax.swing.JLabel();
-        lblFinal = new javax.swing.JLabel();
+        txtUserChooser = new javax.swing.JTextField();
+        txtLevelChooser = new javax.swing.JTextField();
+        btnSelectLevel = new javax.swing.JButton();
+        lblFile1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        lblRegisterNum.setText("Numero de registros");
-
-        btnCreateData.setText("Create data");
-        btnCreateData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateDataActionPerformed(evt);
-            }
-        });
-
-        lblSession.setText("Tiempo de sesión");
-
-        lblMin.setText("Min");
-
-        lblMax.setText("Max");
-
-        lblTitle.setText("ToolsManager");
 
         btnSelectUser.setText("Select Usuaris");
         btnSelectUser.addActionListener(new java.awt.event.ActionListener() {
@@ -90,15 +77,41 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
         lblFile.setText("Selecciona el fichero de usuarios");
 
+        lblRegisterNum.setText("Numero de registros");
+
         lblDates.setText("Elige una fecha de inicio y de fina l(yyyy-MM-dd HH:mm:ss)");
+
+        btnCreateData.setText("Create data");
+        btnCreateData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateDataActionPerformed(evt);
+            }
+        });
 
         txtDateIni.setText("2021-05-21 12:00:00");
 
+        lblSession.setText("Tiempo de sesión");
+
         txtDateFinal.setText("2021-05-21 20:00:00");
+
+        lblMin.setText("Min");
 
         lblInitial.setText("Inicio");
 
+        lblMax.setText("Max");
+
         lblFinal.setText("Final");
+
+        lblTitle.setText("ToolsManager");
+
+        btnSelectLevel.setText("Select Level");
+        btnSelectLevel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelectLevelActionPerformed(evt);
+            }
+        });
+
+        lblFile1.setText("Selecciona el fichero de los niveles");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,7 +121,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUserChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(btnSelectUser))
                     .addGroup(layout.createSequentialGroup()
@@ -142,8 +155,13 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                                     .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
-                                .addComponent(btnCreateData)))))
-                .addContainerGap(51, Short.MAX_VALUE))
+                                .addComponent(btnCreateData))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(txtLevelChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnSelectLevel))
+                    .addComponent(lblFile1))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +172,15 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 .addComponent(lblFile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtFileChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUserChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSelectUser))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addComponent(lblFile1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtLevelChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSelectLevel))
+                .addGap(28, 28, 28)
                 .addComponent(lblDates)
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,21 +207,34 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                     .addComponent(btnCreateData)
                     .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRegisterNum))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
+        fileChooser.setFileFilter(fileFilter);
+        int returnOption = fileChooser.showOpenDialog(this);
+        if (returnOption == JFileChooser.APPROVE_OPTION)
+        txtUserChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_btnSelectUserActionPerformed
+
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
         Data data = new Data(this, true);
         String cadena;
         BufferedReader br;
+        BufferedReader br2;
         try {
-            br = new BufferedReader(new FileReader(txtFileChooser.getText()));
+            br = new BufferedReader(new FileReader(txtUserChooser.getText()));
+            br2 = new BufferedReader(new FileReader(txtLevelChooser.getText()));
             ArrayList<User> uArrayList = new ArrayList<>();
+            ArrayList<Levels> lArrayList = new ArrayList<>();
             br.readLine();
             while ((cadena = br.readLine()) != null) {
                 String[] spliter = cadena.split(",");
@@ -205,23 +242,36 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 //break;
             }
             br.close();
-            data.randomusage();
+            br2.readLine();
+            while ((cadena = br2.readLine()) != null) {
+                String[] spliter = cadena.split(",");
+                lArrayList.add(new Levels(Integer.parseInt(spliter[0])));
+                //break;
+            }
+            br2.close();
+            data.randomattempts();
             for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
                 Random r = new Random();
                 int linea = r.nextInt(uArrayList.size());
                 User usuariAleatori = uArrayList.get(linea);
                 int idaleatori = usuariAleatori.getId();
+                int id = r.nextInt(10) + 1;
+                
+                int linea2 = r.nextInt(lArrayList.size());
+                Levels levelAleatori = lArrayList.get(linea2);
+                int idaleatori2 = levelAleatori.getId();
+                
+                
                 long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
                 long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
                 long diff = end - offset + 1;
                 Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
-                System.out.println(rand);
                 int min = (int) jspMin.getValue();
                 int max = (int) jspMax.getValue();
                 int rndInt = r.nextInt(max - min) + min;
                 long plus = TimeUnit.MINUTES.toMillis(rndInt);
                 Timestamp rand2 = new Timestamp(rand.getTime() + plus);
-                data.data(idaleatori,rand,rand2);
+                data.datattempts(id,idaleatori,idaleatori2,rand,rand2);
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
@@ -231,15 +281,15 @@ public class RandomUsageDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnCreateDataActionPerformed
 
-    private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
+    private void btnSelectLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectLevelActionPerformed
         // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
         fileChooser.setFileFilter(fileFilter);
         int returnOption = fileChooser.showOpenDialog(this);
         if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtFileChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());;
-    }//GEN-LAST:event_btnSelectUserActionPerformed
+        txtLevelChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+    }//GEN-LAST:event_btnSelectLevelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,20 +308,20 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RandomUsageDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RandomAttemptsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RandomUsageDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RandomAttemptsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RandomUsageDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RandomAttemptsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RandomUsageDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RandomAttemptsDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                RandomUsageDialog dialog = new RandomUsageDialog(new javax.swing.JFrame(), true);
+                RandomAttemptsDialog dialog = new RandomAttemptsDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -285,11 +335,13 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateData;
+    private javax.swing.JButton btnSelectLevel;
     private javax.swing.JButton btnSelectUser;
     private javax.swing.JSpinner jspMax;
     private javax.swing.JSpinner jspMin;
     private javax.swing.JLabel lblDates;
     private javax.swing.JLabel lblFile;
+    private javax.swing.JLabel lblFile1;
     private javax.swing.JLabel lblFinal;
     private javax.swing.JLabel lblInitial;
     private javax.swing.JLabel lblMax;
@@ -299,7 +351,8 @@ public class RandomUsageDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblTitle;
     private javax.swing.JTextField txtDateFinal;
     private javax.swing.JTextField txtDateIni;
-    private javax.swing.JTextField txtFileChooser;
+    private javax.swing.JTextField txtLevelChooser;
     private javax.swing.JTextField txtRegister;
+    private javax.swing.JTextField txtUserChooser;
     // End of variables declaration//GEN-END:variables
 }

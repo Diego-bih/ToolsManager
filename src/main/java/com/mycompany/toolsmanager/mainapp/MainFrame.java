@@ -44,14 +44,14 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitle = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
-        mniRandomUsage = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        mniRandomAttempts = new javax.swing.JMenu();
-        mniInventoryData = new javax.swing.JMenu();
+        mniRandomData = new javax.swing.JMenu();
+        mniRandomUsage = new javax.swing.JMenuItem();
+        mniRandomAttempts = new javax.swing.JMenuItem();
+        mniDataInventory = new javax.swing.JMenuItem();
+        mnuFile = new javax.swing.JMenu();
+        mnuHelp = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -60,32 +60,37 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("ToolsManager");
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText("ToolsManager");
 
-        mniRandomUsage.setText("File");
+        mniRandomData.setText("File");
 
-        jMenuItem1.setText("Random Usage");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mniRandomUsage.setText("Random Usage");
+        mniRandomUsage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mniRandomUsageActionPerformed(evt);
             }
         });
-        mniRandomUsage.add(jMenuItem1);
+        mniRandomData.add(mniRandomUsage);
 
-        jMenuItem2.setText("Random Attempts");
-        mniRandomUsage.add(jMenuItem2);
+        mniRandomAttempts.setText("Random Attempts");
+        mniRandomAttempts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniRandomAttemptsActionPerformed(evt);
+            }
+        });
+        mniRandomData.add(mniRandomAttempts);
 
-        jMenuItem3.setText("Inventory Data");
-        mniRandomUsage.add(jMenuItem3);
+        mniDataInventory.setText("Inventory Data");
+        mniRandomData.add(mniDataInventory);
 
-        mnuBar.add(mniRandomUsage);
+        mnuBar.add(mniRandomData);
 
-        mniRandomAttempts.setText("Edit");
-        mnuBar.add(mniRandomAttempts);
+        mnuFile.setText("Edit");
+        mnuBar.add(mnuFile);
 
-        mniInventoryData.setText("Help");
-        mnuBar.add(mniInventoryData);
+        mnuHelp.setText("Help");
+        mnuBar.add(mnuHelp);
 
         setJMenuBar(mnuBar);
 
@@ -95,14 +100,14 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(209, 209, 209)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(231, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel1)
+                .addComponent(lblTitle)
                 .addContainerGap(397, Short.MAX_VALUE))
         );
 
@@ -116,11 +121,17 @@ public class MainFrame extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_formWindowOpened
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mniRandomUsageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRandomUsageActionPerformed
         // TODO add your handling code here:
         RandomUsageDialog rud = new RandomUsageDialog(this, true);
         rud.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mniRandomUsageActionPerformed
+
+    private void mniRandomAttemptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRandomAttemptsActionPerformed
+        // TODO add your handling code here:
+        RandomAttemptsDialog rad = new RandomAttemptsDialog(this, true);
+        rad.setVisible(true);
+    }//GEN-LAST:event_mniRandomAttemptsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,13 +170,13 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenu mniInventoryData;
-    private javax.swing.JMenu mniRandomAttempts;
-    private javax.swing.JMenu mniRandomUsage;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JMenuItem mniDataInventory;
+    private javax.swing.JMenuItem mniRandomAttempts;
+    private javax.swing.JMenu mniRandomData;
+    private javax.swing.JMenuItem mniRandomUsage;
     private javax.swing.JMenuBar mnuBar;
+    private javax.swing.JMenu mnuFile;
+    private javax.swing.JMenu mnuHelp;
     // End of variables declaration//GEN-END:variables
 }
