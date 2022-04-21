@@ -26,11 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="txtUserChooser" min="-2" pref="336" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="btnSelectUser" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnCreateResultsData" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
                       <Component id="lblTitle" min="-2" pref="93" max="-2" attributes="0"/>
@@ -68,20 +64,35 @@
                                   <Component id="jspMax" min="-2" pref="46" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                               <Component id="btnCreateData" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="txtLevelChooser" min="-2" pref="336" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                      <Component id="btnSelectLevel" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <Component id="lblFile1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblResultsData" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="txtUserChooser" min="-2" pref="336" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnSelectUser" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="txtLevelChooser" min="-2" pref="336" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="btnSelectLevel" min="-2" pref="99" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="txtAttemptsChooser" min="-2" pref="336" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                              <Component id="btnSelectAttempts" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
+              <EmptySpace pref="22" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,7 +115,7 @@
                   <Component id="txtLevelChooser" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSelectLevel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="lblDates" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -137,7 +148,16 @@
                   <Component id="txtRegister" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblRegisterNum" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="105" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="lblResultsData" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtAttemptsChooser" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSelectAttempts" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnCreateResultsData" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="19" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -236,6 +256,29 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Selecciona el fichero de los niveles"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblResultsData">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seleccione el fichero de los intentos una vez creado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtAttemptsChooser">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCreateResultsData">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Create results data"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateResultsDataActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnSelectAttempts">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Select Attempts"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSelectAttemptsActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

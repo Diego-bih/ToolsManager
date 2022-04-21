@@ -46,10 +46,16 @@ public class Data extends javax.swing.JDialog {
         txaData.setText("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
     }
     
-     public void randomattempts()
+    public void randomattempts()
     {
         txaData.removeAll();
         txaData.setText("idIntent,idUsuari,idNivell,inicioIntentTimestamp,finIntentTimeStamp" + "\n");  
+    }
+    
+    public void randomresults()
+    {
+        txaData.removeAll();
+        txaData.setText("idIntent,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4" + "\n");  
     }
     
     public void data(int id, Timestamp timeini, Timestamp timefin){   
@@ -59,6 +65,11 @@ public class Data extends javax.swing.JDialog {
      public void datattempts(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){   
         txaData.append(String.valueOf(id) + "," + String.valueOf(idusuari) + "," + String.valueOf(idnivell)+ "," + timeini + "," + timefin + "\n");
     }
+     
+     public void dataresults(int idIntent,int idNivell,int e1, int e2, int e3, int e4){   
+        txaData.append(String.valueOf(idIntent) + "," + String.valueOf(idNivell) + "," + String.valueOf(e1)+ "," + String.valueOf(e2) + "," + String.valueOf(e3) + "," + String.valueOf(e4) + "\n");
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
