@@ -82,6 +82,11 @@ public class MainFrame extends javax.swing.JFrame {
         mniRandomData.add(mniRandomAttempts);
 
         mniDataInventory.setText("Inventory Data");
+        mniDataInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDataInventoryActionPerformed(evt);
+            }
+        });
         mniRandomData.add(mniDataInventory);
 
         mnuBar.add(mniRandomData);
@@ -132,6 +137,12 @@ public class MainFrame extends javax.swing.JFrame {
         RandomAttemptsDialog rad = new RandomAttemptsDialog(this, true);
         rad.setVisible(true);
     }//GEN-LAST:event_mniRandomAttemptsActionPerformed
+
+    private void mniDataInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDataInventoryActionPerformed
+        // TODO add your handling code here:
+        DataInventoryDialog did = new DataInventoryDialog(this,true);
+        did.setVisible(true);
+    }//GEN-LAST:event_mniDataInventoryActionPerformed
 
     /**
      * @param args the command line arguments

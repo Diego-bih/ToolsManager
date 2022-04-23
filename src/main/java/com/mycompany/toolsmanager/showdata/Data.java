@@ -58,12 +58,22 @@ public class Data extends javax.swing.JDialog {
         txaData.setText("idIntent,idUsuari,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4,identificaEina5,identificaEina6,identificaEina7,identificaEina8" + "\n");  
     }
     
+     public void inventory()
+    {
+        txaData.removeAll();
+        txaData.setText("idUsuari,idEina1,idaEina2,idEina3,idEina4,idEina5,idEina6,idEina7,idEina8" + "\n");  
+    }
+    
     public void data(int id, Timestamp timeini, Timestamp timefin){   
         txaData.append(String.valueOf(id) + "," + timeini + "," + timefin + "\n");
     }
     
-     public void datattempts(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){   
+    public void datattempts(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){   
         txaData.append(String.valueOf(id) + "," + String.valueOf(idusuari) + "," + String.valueOf(idnivell)+ "," + timeini + "," + timefin + "\n");
+    }
+    
+    public void datainventory(int id, int ideina1, int ideina2, int ideina3,int ideina4,int ideina5,int ideina6,int ideina7,int ideina8){   
+        txaData.append(String.valueOf(id) + "," + String.valueOf(ideina1) + "," + String.valueOf(ideina2) + "," + String.valueOf(ideina3) + "," + String.valueOf(ideina4) + "," + String.valueOf(ideina5) + "," + String.valueOf(ideina6) + "," + String.valueOf(ideina7) + "," + String.valueOf(ideina8) +"\n");
     }
      
      public void dataresults(int idIntent,int usuari,int idNivell,int e1, int e2, int e3, int e4, int e5, int e6, int e7, int e8){   
