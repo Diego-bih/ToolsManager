@@ -55,7 +55,7 @@ public class Data extends javax.swing.JDialog {
     public void randomresults()
     {
         txaData.removeAll();
-        txaData.setText("idIntent,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4" + "\n");  
+        txaData.setText("idIntent,idUsuari,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4,identificaEina5,identificaEina6,identificaEina7,identificaEina8" + "\n");  
     }
     
     public void data(int id, Timestamp timeini, Timestamp timefin){   
@@ -66,8 +66,8 @@ public class Data extends javax.swing.JDialog {
         txaData.append(String.valueOf(id) + "," + String.valueOf(idusuari) + "," + String.valueOf(idnivell)+ "," + timeini + "," + timefin + "\n");
     }
      
-     public void dataresults(int idIntent,int idNivell,int e1, int e2, int e3, int e4){   
-        txaData.append(String.valueOf(idIntent) + "," + String.valueOf(idNivell) + "," + String.valueOf(e1)+ "," + String.valueOf(e2) + "," + String.valueOf(e3) + "," + String.valueOf(e4) + "\n");
+     public void dataresults(int idIntent,int usuari,int idNivell,int e1, int e2, int e3, int e4, int e5, int e6, int e7, int e8){   
+        txaData.append(String.valueOf(idIntent) + "," + String.valueOf(usuari) + "," + String.valueOf(idNivell) + "," + String.valueOf(e1)+ "," + String.valueOf(e2) + "," + String.valueOf(e3) + "," + String.valueOf(e4) + "," + String.valueOf(e5) + "," + String.valueOf(e6) + "," + String.valueOf(e7) + "," + String.valueOf(e8) +  "\n");
     }
 
 
@@ -160,7 +160,8 @@ public class Data extends javax.swing.JDialog {
                 pb.start();
                 } catch (IOException ex) {  
                 Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
-            }    
+            }
+            this.dispose();
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed

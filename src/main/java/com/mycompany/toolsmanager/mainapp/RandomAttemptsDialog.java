@@ -292,6 +292,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 int linea = r.nextInt(uArrayList.size());
                 User usuariAleatori = uArrayList.get(linea);
                 int idaleatori = usuariAleatori.getId();
+                //Numero aleatorio de intento
                 int id = r.nextInt(10) + 1;
                 
                 int linea2 = r.nextInt(lArrayList.size());
@@ -350,8 +351,13 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 int eina1 = r.nextInt(2);
                 int eina2 = r.nextInt(2);
                 int eina3 = r.nextInt(2);
-                int eina4 = r.nextInt(2);         
-                data.dataresults(u.getIdIntent(),u.getIdNivell(),eina1,eina2,eina3,eina4);
+                int eina4 = r.nextInt(2);
+                int eina5 = r.nextInt(2);   
+                int eina6 = r.nextInt(2);   
+                int eina7 = r.nextInt(2);   
+                int eina8 = r.nextInt(2);   
+                
+                data.dataresults(u.getIdIntent(),u.getIdUsuari(),u.getIdNivell(),eina1,eina2,eina3,eina4,eina5,eina6,eina7,eina8);
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
