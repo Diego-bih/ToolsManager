@@ -6,6 +6,7 @@
 package com.mycompany.toolsmanager.startapp;
 
 import static com.mycompany.toolsmanager.constants.Constants.USERSPATH;
+import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.mainapp.MainFrame;
 import com.mycompany.toolsmanager.models.User;
 import static com.mycompany.toolsmanager.utils.Utils.errorMessage;
@@ -27,7 +28,7 @@ import java.util.logging.Logger;
  * @author Diego Ramirez
  */
 public class Login extends javax.swing.JDialog {
-
+    DataAccess da = new DataAccess();
     /**
      * Creates new form Login
      */
@@ -149,18 +150,9 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
-            String cadena;
-            BufferedReader br;
-            try {
-            br = new BufferedReader(new FileReader(USERSPATH));
             ArrayList<User> uArrayList = new ArrayList<>();
-            br.readLine();
-                while ((cadena = br.readLine()) != null) {
-                    String[] spliter = cadena.split(",");
-                    uArrayList.add(new User(Integer.parseInt(spliter[0]), spliter[1], spliter[2],spliter[3],spliter[4],spliter[5],spliter[6],spliter[7]));
-                    //break;
-                }
-                br.close();
+            try {   
+                da.accessUserLogin(uArrayList);
                 for (User u : uArrayList) {
                     if (u.getEmail().equals(txtEmail.getText()) && u.getPassword().equals(txtPassword.getText()) ) { 
                         System.out.println(u.getEmail() + " " + u.getPassword());

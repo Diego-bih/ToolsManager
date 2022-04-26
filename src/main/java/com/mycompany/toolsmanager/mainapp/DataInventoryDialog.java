@@ -5,6 +5,7 @@
  */
 package com.mycompany.toolsmanager.mainapp;
 
+import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.models.Levels;
 import com.mycompany.toolsmanager.models.Results;
 import com.mycompany.toolsmanager.models.User;
@@ -27,7 +28,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Diego Ramirez
  */
 public class DataInventoryDialog extends javax.swing.JDialog {
-
+    DataAccess da = new DataAccess();
     /**
      * Creates new form DataInventoryDialog
      */
@@ -150,38 +151,12 @@ public class DataInventoryDialog extends javax.swing.JDialog {
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
         Data data = new Data(this, true);
-        String cadena;
-        BufferedReader br;
-        BufferedReader br2;
+        ArrayList<Results> rArrayList = new ArrayList<>();
+        ArrayList<Levels> lArrayList = new ArrayList<>();
         try {
-            br = new BufferedReader(new FileReader(txtResultsChooser.getText()));
-            br2 = new BufferedReader(new FileReader(txtLevelChooser.getText()));
-            ArrayList<Results> rArrayList = new ArrayList<>();
-            ArrayList<Levels> lArrayList = new ArrayList<>();
-            br.readLine();
-            while ((cadena = br.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                rArrayList.add(new Results(Integer.parseInt(spliter[0]),Integer.parseInt(spliter[1]),Integer.parseInt(spliter[2]),Integer.parseInt(spliter[3]),Integer.parseInt(spliter[4]),Integer.parseInt(spliter[5]),Integer.parseInt(spliter[6]),Integer.parseInt(spliter[7]),Integer.parseInt(spliter[8]),Integer.parseInt(spliter[9]),Integer.parseInt(spliter[10])));
-                //break;
-            }
-            br.close();
-            br2.readLine();
-            while ((cadena = br2.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                lArrayList.add(new Levels(Integer.parseInt(spliter[0]),Integer.parseInt(spliter[1]),Integer.parseInt(spliter[2]),Integer.parseInt(spliter[3]),Integer.parseInt(spliter[4]),Integer.parseInt(spliter[5]),Integer.parseInt(spliter[6]),Integer.parseInt(spliter[7]),Integer.parseInt(spliter[8]),Integer.parseInt(spliter[9])));
-                //break;
-            }
-            br2.close();
+            da.accessResults(rArrayList, txtResultsChooser);
+            da.accessLevelAll(lArrayList,txtLevelChooser);
             data.inventory();
-            System.out.println(lArrayList.get(1).getIdEina1());
-            System.out.println(lArrayList.get(1).getIdEina2());
-            System.out.println(lArrayList.get(1).getIdEina3());
-            System.out.println(lArrayList.get(1).getIdEina4());
-            System.out.println(lArrayList.get(1).getIdEina5());
-            System.out.println(lArrayList.get(1).getIdEina6());
-            System.out.println(lArrayList.get(1).getIdEina7());
-            System.out.println(lArrayList.get(1).getIdEina8());
-            
             for(Results r : rArrayList){
                 if(r.getIdNivell() == 1){
                     if(r.getIdentificaeina1() == 1){

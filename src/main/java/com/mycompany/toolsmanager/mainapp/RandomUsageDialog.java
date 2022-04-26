@@ -5,6 +5,7 @@
  */
 package com.mycompany.toolsmanager.mainapp;
 
+import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.showdata.Data;
 import com.mycompany.toolsmanager.startapp.Login;
@@ -27,6 +28,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class RandomUsageDialog extends javax.swing.JDialog {
 
+    DataAccess da = new DataAccess();
+    
     /**
      * Creates new form RandomUsageDialog
      */
@@ -193,18 +196,9 @@ public class RandomUsageDialog extends javax.swing.JDialog {
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
         Data data = new Data(this, true);
-        String cadena;
-        BufferedReader br;
         try {
-            br = new BufferedReader(new FileReader(txtFileChooser.getText()));
             ArrayList<User> uArrayList = new ArrayList<>();
-            br.readLine();
-            while ((cadena = br.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                uArrayList.add(new User(Integer.parseInt(spliter[0])));
-                //break;
-            }
-            br.close();
+            da.accessUser(uArrayList,txtFileChooser);
             data.randomusage();
             for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
                 Random r = new Random();

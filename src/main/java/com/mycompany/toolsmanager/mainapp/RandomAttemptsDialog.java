@@ -5,6 +5,7 @@
  */
 package com.mycompany.toolsmanager.mainapp;
 
+import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.models.Attempt;
 import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.models.Levels;
@@ -28,7 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Diego Ramirez
  */
 public class RandomAttemptsDialog extends javax.swing.JDialog {
-
+    DataAccess da = new DataAccess();
     /**
      * Creates new form RandomAttemptsDialog
      */
@@ -264,28 +265,11 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
         Data data = new Data(this, true);
-        String cadena;
-        BufferedReader br;
-        BufferedReader br2;
+        ArrayList<User> uArrayList = new ArrayList<>();
+        ArrayList<Levels> lArrayList = new ArrayList<>();
         try {
-            br = new BufferedReader(new FileReader(txtUserChooser.getText()));
-            br2 = new BufferedReader(new FileReader(txtLevelChooser.getText()));
-            ArrayList<User> uArrayList = new ArrayList<>();
-            ArrayList<Levels> lArrayList = new ArrayList<>();
-            br.readLine();
-            while ((cadena = br.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                uArrayList.add(new User(Integer.parseInt(spliter[0])));
-                //break;
-            }
-            br.close();
-            br2.readLine();
-            while ((cadena = br2.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                lArrayList.add(new Levels(Integer.parseInt(spliter[0])));
-                //break;
-            }
-            br2.close();
+            da.accessUser(uArrayList,txtUserChooser);
+            da.accessLevel(lArrayList,txtLevelChooser);
             data.randomattempts();
             for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
                 Random r = new Random();
@@ -332,19 +316,9 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
     private void btnCreateResultsDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResultsDataActionPerformed
         // TODO add your handling code here:
         Data data = new Data(this, true);
-        String cadena;
-        BufferedReader br;
+        ArrayList<Attempt> aArrayList = new ArrayList<>();
         try {
-            br = new BufferedReader(new FileReader(txtAttemptsChooser.getText()));
-            ArrayList<Attempt> aArrayList = new ArrayList<>();
-            br.readLine();
-            while ((cadena = br.readLine()) != null) {
-                String[] spliter = cadena.split(",");
-                aArrayList.add(new Attempt(Integer.parseInt(spliter[0]),Integer.parseInt(spliter[1]),Integer.parseInt(spliter[2])));
-                //break;
-            }
-            System.out.println(aArrayList);
-            br.close();
+            da.accessAttempt(aArrayList,txtAttemptsChooser);
             data.randomresults();
             for(Attempt u : aArrayList){
                 Random r = new Random();

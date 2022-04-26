@@ -25,6 +25,7 @@ com\mycompany\toolsmanager\mainapp\DataInventoryDialog$4$1.class
 com\mycompany\toolsmanager\constants\Constants.class
 com\mycompany\toolsmanager\mainapp\RandomUsageDialog$3$1.class
 com\mycompany\toolsmanager\showdata\Data$3$1.class
+com\mycompany\toolsmanager\dataAccess\DataAccess.class
 com\mycompany\toolsmanager\startapp\Register.class
 com\mycompany\toolsmanager\mainapp\RandomAttemptsDialog$3.class
 com\mycompany\toolsmanager\startapp\Register$1.class
