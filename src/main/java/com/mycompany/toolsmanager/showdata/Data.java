@@ -86,6 +86,9 @@ public class Data extends javax.swing.JDialog {
     public void dataAttemptJson(String mainObj){ 
         txaData.append(mainObj);
      }
+     public void dataInventoryJson(String mainObj){ 
+        txaData.append(mainObj);
+     }
 
 
 

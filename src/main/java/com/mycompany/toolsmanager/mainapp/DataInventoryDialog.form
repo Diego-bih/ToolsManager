@@ -105,7 +105,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblFile">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Selecciona el fichero de los resultados de los intentos"/>
+        <Property name="text" type="java.lang.String" value="Selecciona el fichero de los resultados de los resultados"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreateData">

@@ -23,6 +23,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -75,7 +77,7 @@ public class DataInventoryDialog extends javax.swing.JDialog {
             }
         });
 
-        lblFile.setText("Selecciona el fichero de los resultados de los intentos");
+        lblFile.setText("Selecciona el fichero de los resultados de los resultados");
 
         btnCreateData.setText("Create data");
         btnCreateData.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +149,13 @@ public class DataInventoryDialog extends javax.swing.JDialog {
 
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
+         if(cmbFormat.getSelectedItem() == "CSV"){
+            createCSV();
+        }else if(cmbFormat.getSelectedItem() == "JSON"){
+            createJson();
+        }
+    }//GEN-LAST:event_btnCreateDataActionPerformed
+    public void createCSV(){
         Data data = new Data(this, true);
         ArrayList<Results> rArrayList = new ArrayList<>();
         ArrayList<Levels> lArrayList = new ArrayList<>();
@@ -212,8 +221,91 @@ public class DataInventoryDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCreateDataActionPerformed
-
+    }
+    
+    public void createJson(){
+        Data data = new Data(this, true);
+        ArrayList<Results> rArrayList = new ArrayList<>();
+        ArrayList<Levels> lArrayList = new ArrayList<>();
+        JSONObject mainObj = new JSONObject();
+        JSONArray ja = new JSONArray();
+        try {
+            da.accessResults(rArrayList, txtResultsChooser);
+            da.accessLevelAll(lArrayList,txtLevelChooser);
+            for(Results r : rArrayList){
+                if(r.getIdNivell() == 1){
+                    if(r.getIdentificaeina1() == 1){
+                        r.setIdentificaeina1(lArrayList.get(0).getIdEina1());    
+                    }if(r.getIdentificaeina2() == 1){
+                        r.setIdentificaeina2(lArrayList.get(0).getIdEina2()); 
+                    }
+                    if(r.getIdentificaeina3() == 1){
+                        r.setIdentificaeina3(lArrayList.get(0).getIdEina3()); 
+                    }
+                    if(r.getIdentificaeina4() == 1){
+                        r.setIdentificaeina4(lArrayList.get(0).getIdEina4()); 
+                    }
+                    if(r.getIdentificaeina5() == 1){
+                        r.setIdentificaeina5(lArrayList.get(0).getIdEina5()); 
+                    }
+                    if(r.getIdentificaeina6() == 1){
+                        r.setIdentificaeina6(lArrayList.get(0).getIdEina6()); 
+                    }
+                    if(r.getIdentificaeina7() == 1){
+                        r.setIdentificaeina7(lArrayList.get(0).getIdEina7()); 
+                    }
+                    if(r.getIdentificaeina8() == 1){
+                        r.setIdentificaeina8(lArrayList.get(0).getIdEina8()); 
+                    }
+                }else if(r.getIdNivell() == 2) {
+                      if(r.getIdentificaeina1() == 1){
+                        r.setIdentificaeina1(lArrayList.get(1).getIdEina1());    
+                    }if(r.getIdentificaeina2() == 1){
+                        r.setIdentificaeina2(lArrayList.get(1).getIdEina2()); 
+                    }
+                    if(r.getIdentificaeina3() == 1){
+                        r.setIdentificaeina3(lArrayList.get(1).getIdEina3()); 
+                    }
+                    if(r.getIdentificaeina4() == 1){
+                        r.setIdentificaeina4(lArrayList.get(1).getIdEina4()); 
+                    }
+                    if(r.getIdentificaeina5() == 1){
+                        r.setIdentificaeina5(lArrayList.get(1).getIdEina5()); 
+                    }
+                    if(r.getIdentificaeina6() == 1){
+                        r.setIdentificaeina6(lArrayList.get(1).getIdEina6()); 
+                    }
+                    if(r.getIdentificaeina7() == 1){
+                        r.setIdentificaeina7(lArrayList.get(1).getIdEina7()); 
+                    }
+                    if(r.getIdentificaeina8() == 1){
+                        r.setIdentificaeina8(lArrayList.get(1).getIdEina8()); 
+                    }
+                }
+                JSONObject jo = new JSONObject();
+                jo.put("idUsuari",r.getIdUsuari());
+                jo.put("idEina1",r.getIdentificaeina1());
+                jo.put("idaEina2",r.getIdentificaeina2());
+                jo.put("idEina3",r.getIdentificaeina3());
+                jo.put("idEina4",r.getIdentificaeina4());
+                jo.put("idEina5",r.getIdentificaeina5());
+                jo.put("idEina6",r.getIdentificaeina6());
+                jo.put("idEina7",r.getIdentificaeina7());
+                jo.put("idEina8",r.getIdentificaeina8());
+                ja.put(jo);
+                //data.datainventory(r.getIdUsuari(), r.getIdentificaeina1(), r.getIdentificaeina2(),r.getIdentificaeina3(),r.getIdentificaeina4(),r.getIdentificaeina5(),r.getIdentificaeina6(),r.getIdentificaeina7(),r.getIdentificaeina8());
+            }
+            mainObj.put("Inventory", ja);
+            data.dataInventoryJson(mainObj.toString(4));
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+ 
     /**
      * @param args the command line arguments
      */
