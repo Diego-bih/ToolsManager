@@ -11,6 +11,7 @@ import com.mycompany.toolsmanager.models.Results;
 import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.showdata.Data;
 import com.mycompany.toolsmanager.startapp.Login;
+import com.mycompany.toolsmanager.utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,6 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class DataInventoryDialog extends javax.swing.JDialog {
     DataAccess da = new DataAccess();
+    Utils u = new Utils();
     /**
      * Creates new form DataInventoryDialog
      */
@@ -130,22 +132,12 @@ public class DataInventoryDialog extends javax.swing.JDialog {
 
     private void btnSelectltLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectltLevelActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtLevelChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        u.fileChooserCSV(txtLevelChooser, this);
     }//GEN-LAST:event_btnSelectltLevelActionPerformed
 
     private void btnSelectResultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectResultActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtResultsChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        u.fileChooserCSV(txtResultsChooser, this);
     }//GEN-LAST:event_btnSelectResultActionPerformed
 
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed

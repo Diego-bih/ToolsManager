@@ -11,6 +11,7 @@ import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.models.Levels;
 import com.mycompany.toolsmanager.showdata.Data;
 import com.mycompany.toolsmanager.startapp.Login;
+import com.mycompany.toolsmanager.utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -30,6 +31,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class RandomAttemptsDialog extends javax.swing.JDialog {
     DataAccess da = new DataAccess();
+    Utils u = new Utils();
     /**
      * Creates new form RandomAttemptsDialog
      */
@@ -254,12 +256,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
 
     private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtUserChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        u.fileChooserCSV(txtUserChooser, this);
     }//GEN-LAST:event_btnSelectUserActionPerformed
 
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
@@ -305,12 +302,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
 
     private void btnSelectLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectLevelActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtLevelChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        u.fileChooserCSV(txtLevelChooser, this);
     }//GEN-LAST:event_btnSelectLevelActionPerformed
 
     private void btnCreateResultsDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResultsDataActionPerformed
@@ -343,12 +335,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
 
     private void btnSelectAttemptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAttemptsActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtAttemptsChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        u.fileChooserCSV(txtAttemptsChooser, this);
     }//GEN-LAST:event_btnSelectAttemptsActionPerformed
 
     /**

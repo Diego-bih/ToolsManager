@@ -9,6 +9,7 @@ import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.showdata.Data;
 import com.mycompany.toolsmanager.startapp.Login;
+import com.mycompany.toolsmanager.utils.Utils;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -29,6 +30,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class RandomUsageDialog extends javax.swing.JDialog {
 
     DataAccess da = new DataAccess();
+    Utils u = new Utils();
     
     /**
      * Creates new form RandomUsageDialog
@@ -227,12 +229,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
     private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
         // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
-        fileChooser.setFileFilter(fileFilter);
-        int returnOption = fileChooser.showOpenDialog(this);
-        if (returnOption == JFileChooser.APPROVE_OPTION)
-        txtFileChooser.setText(fileChooser.getSelectedFile().getAbsolutePath());;
+        u.fileChooserCSV(txtFileChooser, this);
     }//GEN-LAST:event_btnSelectUserActionPerformed
 
     /**

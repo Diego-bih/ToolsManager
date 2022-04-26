@@ -5,10 +5,14 @@
  */
 package com.mycompany.toolsmanager.utils;
 
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -67,5 +71,13 @@ public class Utils {
         outputImage.getGraphics().drawImage(resultingImage, 0, 0, null);
         ImageIcon imageIcon = new ImageIcon(outputImage);
         return imageIcon;
+    }
+    public void fileChooserCSV(JTextField txt, Component c){
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
+        fileChooser.setFileFilter(fileFilter);
+        int returnOption = fileChooser.showOpenDialog(c);
+        if (returnOption == JFileChooser.APPROVE_OPTION)
+        txt.setText(fileChooser.getSelectedFile().getAbsolutePath());;
     }
 }
