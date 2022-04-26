@@ -22,6 +22,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -66,6 +68,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
         txtDateFinal = new javax.swing.JTextField();
         lblInitial = new javax.swing.JLabel();
         lblFinal = new javax.swing.JLabel();
+        cmbFormat = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -105,6 +108,8 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
         lblFinal.setText("Final");
 
+        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -135,18 +140,21 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                                 .addComponent(lblRegisterNum)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFinal)
-                                    .addComponent(txtDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblMax)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lblFinal)
+                                        .addComponent(txtDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblMax)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnCreateData)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
@@ -187,7 +195,8 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateData)
                     .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRegisterNum))
+                    .addComponent(lblRegisterNum)
+                    .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
@@ -197,7 +206,59 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
+        if(cmbFormat.getSelectedItem() == "CSV"){
+            createCSV();
+        }else if(cmbFormat.getSelectedItem() == "JSON"){
+            createJSON();
+        }
+    }//GEN-LAST:event_btnCreateDataActionPerformed
+
+    private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
+        // TODO add your handling code here:
+        u.fileChooserCSV(txtFileChooser, this);
+    }//GEN-LAST:event_btnSelectUserActionPerformed
+
+    public void createJSON(){
         Data data = new Data(this, true);
+        JSONObject mainObj = new JSONObject();
+        JSONArray ja = new JSONArray();
+        try {
+            ArrayList<User> uArrayList = new ArrayList<>();
+            da.accessUser(uArrayList,txtFileChooser);
+            for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
+                Random r = new Random();
+                int linea = r.nextInt(uArrayList.size());
+                User usuariAleatori = uArrayList.get(linea);
+                int idaleatori = usuariAleatori.getId();
+                long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
+                long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
+                long diff = end - offset + 1;
+                Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+                System.out.println(rand);
+                int min = (int) jspMin.getValue();
+                int max = (int) jspMax.getValue();
+                int rndInt = r.nextInt(max - min) + min;
+                long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                Timestamp rand2 = new Timestamp(rand.getTime() + plus);
+                JSONObject jo = new JSONObject();
+                jo.put("IdUsuari",idaleatori);
+                jo.put("loginTimestamp",rand);
+                jo.put("logoutTimestamp",rand2);
+                ja.put(jo);
+            }
+            mainObj.put("Usuaris", ja);
+            data.dataJson(mainObj.toString());
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void createCSV(){
+        Data data = new Data(this, true);
+        JSONObject mainObj = new JSONObject();
+        JSONArray ja = new JSONArray();
         try {
             ArrayList<User> uArrayList = new ArrayList<>();
             da.accessUser(uArrayList,txtFileChooser);
@@ -225,13 +286,11 @@ public class RandomUsageDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCreateDataActionPerformed
-
-    private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
-        // TODO add your handling code here:
-        u.fileChooserCSV(txtFileChooser, this);
-    }//GEN-LAST:event_btnSelectUserActionPerformed
-
+    }
+    
+    public void randomData(){
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -277,6 +336,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateData;
     private javax.swing.JButton btnSelectUser;
+    private javax.swing.JComboBox<String> cmbFormat;
     private javax.swing.JSpinner jspMax;
     private javax.swing.JSpinner jspMin;
     private javax.swing.JLabel lblDates;

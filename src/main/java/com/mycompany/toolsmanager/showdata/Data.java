@@ -17,6 +17,8 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -26,6 +28,7 @@ public class Data extends javax.swing.JDialog {
     JFileChooser fileChooser = new JFileChooser();
     public static boolean usage = false;
     public static boolean attempts = false;
+
     /**
      * Creates new form Data
      */
@@ -79,6 +82,10 @@ public class Data extends javax.swing.JDialog {
      public void dataresults(int idIntent,int usuari,int idNivell,int e1, int e2, int e3, int e4, int e5, int e6, int e7, int e8){   
         txaData.append(String.valueOf(idIntent) + "," + String.valueOf(usuari) + "," + String.valueOf(idNivell) + "," + String.valueOf(e1)+ "," + String.valueOf(e2) + "," + String.valueOf(e3) + "," + String.valueOf(e4) + "," + String.valueOf(e5) + "," + String.valueOf(e6) + "," + String.valueOf(e7) + "," + String.valueOf(e8) +  "\n");
     }
+
+    public void dataJson(String mainObj){ 
+        txaData.append(mainObj.toString());
+     }
 
 
     /**
