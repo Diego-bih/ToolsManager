@@ -45,25 +45,21 @@ public class Data extends javax.swing.JDialog {
     
     public void randomusage()
     {
-        txaData.removeAll();
         txaData.setText("idUsuari,loginTimestamp,logoutTimestamp" + "\n");
     }
     
     public void randomattempts()
     {
-        txaData.removeAll();
         txaData.setText("idIntent,idUsuari,idNivell,inicioIntentTimestamp,finIntentTimeStamp" + "\n");  
     }
     
     public void randomresults()
     {
-        txaData.removeAll();
         txaData.setText("idIntent,idUsuari,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4,identificaEina5,identificaEina6,identificaEina7,identificaEina8" + "\n");  
     }
     
      public void inventory()
     {
-        txaData.removeAll();
         txaData.setText("idUsuari,idEina1,idaEina2,idEina3,idEina4,idEina5,idEina6,idEina7,idEina8" + "\n");  
     }
     
@@ -84,8 +80,13 @@ public class Data extends javax.swing.JDialog {
     }
 
     public void dataJson(String mainObj){ 
-        txaData.append(mainObj.toString());
+        txaData.append(mainObj);
      }
+    
+    public void dataAttemptJson(String mainObj){ 
+        txaData.append(mainObj);
+     }
+
 
 
     /**

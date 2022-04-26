@@ -24,6 +24,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 /**
  *
@@ -73,6 +75,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
         txtAttemptsChooser = new javax.swing.JTextField();
         btnCreateResultsData = new javax.swing.JButton();
         btnSelectAttempts = new javax.swing.JButton();
+        cmbFormat = new javax.swing.JComboBox<>();
+        cmbFormat1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -137,6 +141,10 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             }
         });
 
+        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+
+        cmbFormat1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,7 +152,6 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCreateResultsData)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(212, 212, 212)
                         .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -152,7 +159,6 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                     .addComponent(lblDates)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSession)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtDateIni, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblInitial)
@@ -164,8 +170,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                                 .addComponent(lblRegisterNum)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(56, 56, 56)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFinal)
@@ -175,11 +181,13 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
+                                .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnCreateData))))
                     .addComponent(lblFile1)
                     .addComponent(lblResultsData)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblSession, javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(txtUserChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -192,7 +200,11 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(txtAttemptsChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(25, 25, 25)
-                                .addComponent(btnSelectAttempts)))))
+                                .addComponent(btnSelectAttempts))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cmbFormat1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24)
+                        .addComponent(btnCreateResultsData)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -238,7 +250,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreateData)
                     .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRegisterNum))
+                    .addComponent(lblRegisterNum)
+                    .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(lblResultsData)
                 .addGap(20, 20, 20)
@@ -246,7 +259,9 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                     .addComponent(txtAttemptsChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSelectAttempts))
                 .addGap(18, 18, 18)
-                .addComponent(btnCreateResultsData)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateResultsData)
+                    .addComponent(cmbFormat1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -261,6 +276,33 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
 
     private void btnCreateDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateDataActionPerformed
         // TODO add your handling code here:
+         if(cmbFormat.getSelectedItem() == "CSV"){
+            createCSV();
+        }else if(cmbFormat.getSelectedItem() == "JSON"){
+            createJSON();
+        }
+    }//GEN-LAST:event_btnCreateDataActionPerformed
+
+    private void btnSelectLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectLevelActionPerformed
+        // TODO add your handling code here:
+        u.fileChooserCSV(txtLevelChooser, this);
+    }//GEN-LAST:event_btnSelectLevelActionPerformed
+
+    private void btnCreateResultsDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResultsDataActionPerformed
+        // TODO add your handling code here:
+         if(cmbFormat1.getSelectedItem() == "CSV"){
+            createResultCSV();
+        }else if(cmbFormat1.getSelectedItem() == "JSON"){
+            createResultJson();
+        }
+    }//GEN-LAST:event_btnCreateResultsDataActionPerformed
+
+    private void btnSelectAttemptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAttemptsActionPerformed
+        // TODO add your handling code here:
+        u.fileChooserCSV(txtAttemptsChooser, this);
+    }//GEN-LAST:event_btnSelectAttemptsActionPerformed
+
+    public void createCSV(){
         Data data = new Data(this, true);
         ArrayList<User> uArrayList = new ArrayList<>();
         ArrayList<Levels> lArrayList = new ArrayList<>();
@@ -298,15 +340,100 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCreateDataActionPerformed
-
-    private void btnSelectLevelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectLevelActionPerformed
-        // TODO add your handling code here:
-        u.fileChooserCSV(txtLevelChooser, this);
-    }//GEN-LAST:event_btnSelectLevelActionPerformed
-
-    private void btnCreateResultsDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateResultsDataActionPerformed
-        // TODO add your handling code here:
+    }
+    
+    public void createJSON(){
+        Data data = new Data(this, true);
+        ArrayList<User> uArrayList = new ArrayList<>();
+        ArrayList<Levels> lArrayList = new ArrayList<>();
+        JSONObject mainObj = new JSONObject();
+        JSONArray ja = new JSONArray();
+        try {
+            da.accessUser(uArrayList,txtUserChooser);
+            da.accessLevel(lArrayList,txtLevelChooser);
+            for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
+                Random r = new Random();
+                int linea = r.nextInt(uArrayList.size());
+                User usuariAleatori = uArrayList.get(linea);
+                int idaleatori = usuariAleatori.getId();
+                //Numero aleatorio de intento
+                int id = r.nextInt(10) + 1;
+                
+                int linea2 = r.nextInt(lArrayList.size());
+                Levels levelAleatori = lArrayList.get(linea2);
+                int idaleatori2 = levelAleatori.getId();
+                
+                
+                long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
+                long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
+                long diff = end - offset + 1;
+                Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+                int min = (int) jspMin.getValue();
+                int max = (int) jspMax.getValue();
+                int rndInt = r.nextInt(max - min) + min;
+                long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                Timestamp rand2 = new Timestamp(rand.getTime() + plus);
+                JSONObject jo = new JSONObject();
+                jo.put("idIntent",id);
+                jo.put("idUsuari",idaleatori);
+                jo.put("idNivell",idaleatori2);
+                jo.put("inicioIntentTimestamp",rand);
+                jo.put("finIntentTimeStamp",rand2);
+                ja.put(jo);
+            }
+            mainObj.put("Attempts", ja);
+            data.dataAttemptJson(mainObj.toString());
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void createResultJson(){
+        Data data = new Data(this, true);
+        ArrayList<Attempt> aArrayList = new ArrayList<>();
+        JSONObject mainObj = new JSONObject();
+        JSONArray ja = new JSONArray();
+        try {
+            da.accessAttempt(aArrayList,txtAttemptsChooser);
+            for(Attempt u : aArrayList){
+                Random r = new Random();
+                int eina1 = r.nextInt(2);
+                int eina2 = r.nextInt(2);
+                int eina3 = r.nextInt(2);
+                int eina4 = r.nextInt(2);
+                int eina5 = r.nextInt(2);   
+                int eina6 = r.nextInt(2);   
+                int eina7 = r.nextInt(2);   
+                int eina8 = r.nextInt(2);   
+                
+                JSONObject jo = new JSONObject();
+                jo.put("idIntent",u.getIdIntent());
+                jo.put("idUsuari",u.getIdUsuari());
+                jo.put("idNivell",u.getIdNivell());
+                jo.put("identificaEina1",eina1);
+                jo.put("identificaEina2",eina2);
+                jo.put("identificaEina3",eina3);
+                jo.put("identificaEina4",eina4);
+                jo.put("identificaEina5",eina5);
+                jo.put("identificaEina6",eina6);
+                jo.put("identificaEina7",eina7);
+                jo.put("identificaEina8",eina8);
+                ja.put(jo);
+            }
+            mainObj.put("Results", ja);
+            data.dataAttemptJson(mainObj.toString(4));
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void createResultCSV(){
         Data data = new Data(this, true);
         ArrayList<Attempt> aArrayList = new ArrayList<>();
         try {
@@ -331,13 +458,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnCreateResultsDataActionPerformed
-
-    private void btnSelectAttemptsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectAttemptsActionPerformed
-        // TODO add your handling code here:
-        u.fileChooserCSV(txtAttemptsChooser, this);
-    }//GEN-LAST:event_btnSelectAttemptsActionPerformed
-
+    }
     /**
      * @param args the command line arguments
      */
@@ -386,6 +507,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnSelectAttempts;
     private javax.swing.JButton btnSelectLevel;
     private javax.swing.JButton btnSelectUser;
+    private javax.swing.JComboBox<String> cmbFormat;
+    private javax.swing.JComboBox<String> cmbFormat1;
     private javax.swing.JSpinner jspMax;
     private javax.swing.JSpinner jspMin;
     private javax.swing.JLabel lblDates;

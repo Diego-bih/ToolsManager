@@ -247,7 +247,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
                 ja.put(jo);
             }
             mainObj.put("Usuaris", ja);
-            data.dataJson(mainObj.toString());
+            data.dataJson(mainObj.toString(4));
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -286,10 +286,6 @@ public class RandomUsageDialog extends javax.swing.JDialog {
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void randomData(){
-        
     }
     /**
      * @param args the command line arguments
