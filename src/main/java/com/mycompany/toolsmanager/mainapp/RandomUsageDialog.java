@@ -108,7 +108,7 @@ public class RandomUsageDialog extends javax.swing.JDialog {
 
         lblFinal.setText("Final");
 
-        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON", "SQL" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +211,9 @@ public class RandomUsageDialog extends javax.swing.JDialog {
         }else if(cmbFormat.getSelectedItem() == "JSON"){
             createJSON();
         }
+        else if(cmbFormat.getSelectedItem() == "SQL"){
+            createSQL();
+        }
     }//GEN-LAST:event_btnCreateDataActionPerformed
 
     private void btnSelectUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectUserActionPerformed
@@ -257,8 +260,6 @@ public class RandomUsageDialog extends javax.swing.JDialog {
     }
     public void createCSV(){
         Data data = new Data(this, true);
-        JSONObject mainObj = new JSONObject();
-        JSONArray ja = new JSONArray();
         try {
             ArrayList<User> uArrayList = new ArrayList<>();
             da.accessUser(uArrayList,txtFileChooser);
@@ -287,6 +288,37 @@ public class RandomUsageDialog extends javax.swing.JDialog {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void createSQL(){
+        Data data = new Data(this, true);
+        try {
+            ArrayList<User> uArrayList = new ArrayList<>();
+            da.accessUser(uArrayList,txtFileChooser);
+            for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
+                Random r = new Random();
+                int linea = r.nextInt(uArrayList.size());
+                User usuariAleatori = uArrayList.get(linea);
+                int idaleatori = usuariAleatori.getId();
+                long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
+                long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
+                long diff = end - offset + 1;
+                Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+                System.out.println(rand);
+                int min = (int) jspMin.getValue();
+                int max = (int) jspMax.getValue();
+                int rndInt = r.nextInt(max - min) + min;
+                long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                Timestamp rand2 = new Timestamp(rand.getTime() + plus);
+                data.dataSQL(idaleatori,rand,rand2);
+            }
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

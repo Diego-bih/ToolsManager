@@ -9,10 +9,12 @@ import static com.mycompany.toolsmanager.constants.Constants.USERSPATH;
 import com.mycompany.toolsmanager.dataAccess.DataAccess;
 import com.mycompany.toolsmanager.mainapp.MainFrame;
 import com.mycompany.toolsmanager.models.User;
+import com.mycompany.toolsmanager.utils.Utils;
 import static com.mycompany.toolsmanager.utils.Utils.errorMessage;
 import static com.mycompany.toolsmanager.utils.Utils.warningMessage;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dialog;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -29,11 +31,17 @@ import java.util.logging.Logger;
  */
 public class Login extends javax.swing.JDialog {
     DataAccess da = new DataAccess();
+    private boolean showPasswd = false;
     /**
      * Creates new form Login
      */
     public Login(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
+    }
+    
+    public Login(Dialog owner, boolean modal) {
+        super(owner, modal);
         initComponents();
     }
 
@@ -50,11 +58,17 @@ public class Login extends javax.swing.JDialog {
         lblEmail = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         lblRegister = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
+        pwdPassword = new javax.swing.JPasswordField();
+        lblShow = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTitle.setText("Login");
 
@@ -82,6 +96,13 @@ public class Login extends javax.swing.JDialog {
             }
         });
 
+        lblShow.setText("show");
+        lblShow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblShowMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,21 +110,22 @@ public class Login extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRegister)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblPassword)
-                                .addComponent(lblEmail)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                                .addComponent(txtPassword))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(168, 168, 168)
                         .addComponent(lblTitle))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(153, 153, 153)
-                        .addComponent(btnLogin)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                        .addComponent(btnLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblRegister)
+                            .addComponent(lblPassword)
+                            .addComponent(lblEmail)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                            .addComponent(pwdPassword))
+                        .addGap(28, 28, 28)
+                        .addComponent(lblShow)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +138,11 @@ public class Login extends javax.swing.JDialog {
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblPassword)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblShow))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblRegister)
                 .addGap(31, 31, 31)
                 .addComponent(btnLogin)
@@ -151,14 +175,18 @@ public class Login extends javax.swing.JDialog {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
             ArrayList<User> uArrayList = new ArrayList<>();
+            String pwd = new String(pwdPassword.getPassword());
             try {   
                 da.accessUserLogin(uArrayList);
                 for (User u : uArrayList) {
-                    if (u.getEmail().equals(txtEmail.getText()) && u.getPassword().equals(txtPassword.getText()) ) { 
+                    if (u.getEmail().equals(txtEmail.getText()) && u.getPassword().equals(pwd) ) { 
                         System.out.println(u.getEmail() + " " + u.getPassword());
                         MainFrame.logged = true;
+                        MainFrame.username = u.getUsername();
+                        MainFrame.photo = u.getFoto();
                         this.dispose();
-                        getParent().setVisible(true);
+                        break;
+                        //getParent().setVisible(true);
                     }else{
                         
                     }
@@ -170,6 +198,18 @@ public class Login extends javax.swing.JDialog {
         }
                
     }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void lblShowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblShowMouseClicked
+        // TODO add your handling code here:
+        showPasswd = !showPasswd;
+        Utils.showHidePassword(pwdPassword, showPasswd);
+    }//GEN-LAST:event_lblShowMouseClicked
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        if(MainFrame.logged != true){
+        System.exit(0);}
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -218,8 +258,9 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblRegister;
+    private javax.swing.JLabel lblShow;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPasswordField pwdPassword;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

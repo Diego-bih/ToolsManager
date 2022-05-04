@@ -5,10 +5,14 @@
  */
 package com.mycompany.toolsmanager.mainapp;
 
+import static com.mycompany.toolsmanager.constants.Constants.NOIMAGE;
 import com.mycompany.toolsmanager.models.User;
 import com.mycompany.toolsmanager.startapp.Login;
 import com.mycompany.toolsmanager.showdata.Data;
+import com.mycompany.toolsmanager.utils.Utils;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -18,7 +22,10 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -27,11 +34,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class MainFrame extends javax.swing.JFrame {
     public static boolean logged = false;
+    public static String username;
+    public static String photo;
     /**
      * Creates new form MainFrame
      */
-    public MainFrame() {
+    public MainFrame() throws IOException {
         initComponents();
+        File file = new File(NOIMAGE);
+        if(!file.exists()) file.createNewFile();
+
     }
 
     /**
@@ -45,6 +57,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         jFileChooser1 = new javax.swing.JFileChooser();
         lblTitle = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
+        lblUserImage = new javax.swing.JLabel();
         mnuBar = new javax.swing.JMenuBar();
         mniRandomData = new javax.swing.JMenu();
         mniRandomUsage = new javax.swing.JMenuItem();
@@ -104,8 +118,15 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(209, 209, 209)
+                            .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(256, 256, 256)
+                        .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(231, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,7 +134,11 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(lblTitle)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(lblUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(lblUserImage, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pack();
@@ -123,7 +148,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         Login login = new Login(this, true);
+        login.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         login.setVisible(true);
+        showUserInfo();
     }//GEN-LAST:event_formWindowOpened
 
     private void mniRandomUsageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniRandomUsageActionPerformed
@@ -144,6 +171,22 @@ public class MainFrame extends javax.swing.JFrame {
         did.setVisible(true);
     }//GEN-LAST:event_mniDataInventoryActionPerformed
 
+    public void showUserInfo(){
+        if(logged = true){
+            lblUserName.setText(username);
+            BufferedImage originalImage = null;
+            try {
+                originalImage = ImageIO.read(new File(photo));
+                ImageIcon icon = Utils.resizeImageIcon(originalImage, lblUserImage.getWidth(), lblUserImage.getHeight());
+                lblUserImage.setIcon(icon);
+            } catch (IOException ioe) {
+                System.out.println("Imagen no valida");
+            }catch(NullPointerException e) {
+             System.out.println("NullPointerException thrown!");
+            }
+        }
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -174,7 +217,11 @@ public class MainFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                try {
+                    new MainFrame().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -182,6 +229,8 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JLabel lblUserImage;
+    private javax.swing.JLabel lblUserName;
     private javax.swing.JMenuItem mniDataInventory;
     private javax.swing.JMenuItem mniRandomAttempts;
     private javax.swing.JMenu mniRandomData;

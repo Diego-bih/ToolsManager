@@ -79,13 +79,18 @@ public class Register extends javax.swing.JDialog {
         txtUsername = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtPassword = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btnRegister = new javax.swing.JButton();
         txtImageChooser = new javax.swing.JTextField();
         lblProfilePicture = new javax.swing.JLabel();
         btnSearchImage = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblRegister.setText("Registre");
 
@@ -99,10 +104,10 @@ public class Register extends javax.swing.JDialog {
 
         lblPassword.setText("Contrasenya");
 
-        jButton1.setText("Registre");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegister.setText("Registre");
+        btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnRegisterActionPerformed(evt);
             }
         });
 
@@ -128,7 +133,7 @@ public class Register extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(lblRegister))
-                    .addComponent(jButton1)
+                    .addComponent(btnRegister)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(btnSearchImage)
                         .addComponent(lblProfilePicture)
@@ -180,7 +185,7 @@ public class Register extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnRegister)
                 .addContainerGap())
         );
 
@@ -188,7 +193,7 @@ public class Register extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         // TODO add your handling code here:
          try {
             FileWriter fw = new FileWriter(USERSPATH, true);
@@ -196,15 +201,17 @@ public class Register extends javax.swing.JDialog {
             BufferedReader br = new BufferedReader(new FileReader(USERSPATH));
             String line;
             ArrayList<User> uArrayList = new ArrayList<>();
-            if(txtImageChooser.getText() == null){
-            User user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), NOIMAGE, "image/png");
-            uArrayList.add(user);
+            User user = new User();
+            if(txtImageChooser.getText().isBlank()){
+            user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), NOIMAGE, "image/png");
+            //uArrayList.add(user);
             }else{
-            User user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), txtImageChooser.getText(), "image/png");
-            uArrayList.add(user);
+            user = new User((int) br.lines().count(),txtName.getText(),txtSurname.getText(),txtUsername.getText(),txtEmail.getText(),txtPassword.getText(), txtImageChooser.getText(), "image/png");
+            //uArrayList.add(user);
             }
+            uArrayList.add(user);
             for(User u: uArrayList){
-            bw.write(u.toString());
+            bw.write(u.toString() + "\n");
             bw.flush();
             bw.close();
             System.out.println("Usuario creado correctamente");
@@ -215,7 +222,7 @@ public class Register extends javax.swing.JDialog {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }      
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnRegisterActionPerformed
 
     private void btnSearchImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchImageActionPerformed
         // TODO add your handling code here:
@@ -234,6 +241,12 @@ public class Register extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btnSearchImageActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        Login login = new Login(this, true);
+        login.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
@@ -278,8 +291,8 @@ public class Register extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnSearchImage;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel lblEmail;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblName;

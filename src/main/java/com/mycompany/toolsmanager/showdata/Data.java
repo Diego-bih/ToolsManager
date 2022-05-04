@@ -89,6 +89,20 @@ public class Data extends javax.swing.JDialog {
      public void dataInventoryJson(String mainObj){ 
         txaData.append(mainObj);
      }
+     
+     public void dataSQL(int id, Timestamp timeini, Timestamp timefin){
+         txaData.append("INSERT INTO USERS" + "(IdUsuari,loginTimestamp,logoutTimestamp)" + " VALUES(" + id + "," + timeini + "," + timefin + ")" + ";" + "\n" + "\n");
+     }
+     public void dataAttemptSQL(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){
+         txaData.append("INSERT INTO ATTEMPTS" + "(idIntent,idUsuari,idNivell,inicioIntentTimestamp,finIntentTimeStamp)" + " VALUES(" + id + "," + idusuari + "," + idnivell + "," + timeini + "," + timefin + ")" + ";" + "\n" + "\n");
+     }
+      public void dataResultSQL(int idIntent,int usuari,int idNivell,int e1, int e2, int e3, int e4, int e5, int e6, int e7, int e8){
+         txaData.append("INSERT INTO RESULTS" + "(idIntent,idUsuari,idNivell,identificaEina1,identificaEina2,identificaEina3,identificaEina4,identificaEina5,identificaEina6,identificaEina7,identificaEina8)" + " VALUES(" + idIntent + "," + usuari + "," + idNivell + "," + e1 + "," + e2 + "," + e3 + "," + e4  + "," + e5 + "," + e6 + "," + e7 + "," + e8 + ")" + ";" + "\n" + "\n");
+     }
+      
+      public void dataInventorySQL(int id, int ideina1, int ideina2, int ideina3,int ideina4,int ideina5,int ideina6,int ideina7,int ideina8){
+         txaData.append("INSERT INTO USERS" + "(idUsuari,idEina1,idaEina2,idEina3,idEina4,idEina5,idEina6,idEina7,idEina8)" + " VALUES(" + id + "," + ideina1 + "," + ideina2 + "," + ideina3 + "," + ideina4 + "," + ideina5  + "," + ideina6 + "," + ideina7 + "," + ideina8 + "," + ideina1 + ")" + ";" + "\n" + "\n");
+      }
 
 
 

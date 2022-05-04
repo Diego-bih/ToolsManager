@@ -77,6 +77,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
         btnSelectAttempts = new javax.swing.JButton();
         cmbFormat = new javax.swing.JComboBox<>();
         cmbFormat1 = new javax.swing.JComboBox<>();
+        jspMax1 = new javax.swing.JSpinner();
+        lblMax1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -110,9 +112,11 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
 
         lblInitial.setText("Inicio");
 
-        lblMax.setText("Max");
+        lblMax.setText("Max(Level 1)");
 
         lblFinal.setText("Final");
+
+        jspMax.setValue(60);
 
         lblTitle.setText("ToolsManager");
 
@@ -141,9 +145,13 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             }
         });
 
-        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+        cmbFormat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON", "SQL" }));
 
-        cmbFormat1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON" }));
+        cmbFormat1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CSV", "JSON", "SQL" }));
+
+        jspMax1.setValue(90);
+
+        lblMax1.setText("Max(Level 2)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,20 +178,29 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                                 .addComponent(lblRegisterNum)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(39, 39, 39)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblFinal)
-                                    .addComponent(txtDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblMax)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblFinal)
+                                            .addComponent(txtDateFinal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(cmbFormat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(109, 109, 109)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(115, 115, 115)
+                                        .addComponent(btnCreateData))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(lblMax)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                                .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                .addComponent(lblMax1)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCreateData))))
+                                .addComponent(jspMax1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(lblFile1)
                     .addComponent(lblResultsData)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -205,7 +222,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                         .addComponent(cmbFormat1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
                         .addComponent(btnCreateResultsData)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,9 +250,13 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDateFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMax)
-                            .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblMax1)
+                                .addComponent(jspMax1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblMax)
+                                .addComponent(jspMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblInitial)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -280,6 +301,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             createCSV();
         }else if(cmbFormat.getSelectedItem() == "JSON"){
             createJSON();
+        }else if(cmbFormat.getSelectedItem() == "SQL"){
+            createSQL();
         }
     }//GEN-LAST:event_btnCreateDataActionPerformed
 
@@ -294,6 +317,8 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             createResultCSV();
         }else if(cmbFormat1.getSelectedItem() == "JSON"){
             createResultJson();
+        }else if(cmbFormat1.getSelectedItem() == "SQL"){
+            createResultSQL();
         }
     }//GEN-LAST:event_btnCreateResultsDataActionPerformed
 
@@ -316,7 +341,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 User usuariAleatori = uArrayList.get(linea);
                 int idaleatori = usuariAleatori.getId();
                 //Numero aleatorio de intento
-                int id = r.nextInt(10) + 1;
+                //int id = 0;
                 
                 int linea2 = r.nextInt(lArrayList.size());
                 Levels levelAleatori = lArrayList.get(linea2);
@@ -329,10 +354,19 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
                 int min = (int) jspMin.getValue();
                 int max = (int) jspMax.getValue();
-                int rndInt = r.nextInt(max - min) + min;
-                long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                int max2 = (int) jspMax1.getValue();
+                
+                int rndInt;
+                
+                if(idaleatori2 == 1){
+                    rndInt = r.nextInt(max - min) + min;
+                }else{
+                    rndInt = r.nextInt(max2 - min) + min;
+                }
+                   
+                long plus = TimeUnit.SECONDS.toMillis(rndInt);
                 Timestamp rand2 = new Timestamp(rand.getTime() + plus);
-                data.datattempts(id,idaleatori,idaleatori2,rand,rand2);
+                data.datattempts(i + 1,idaleatori,idaleatori2,rand,rand2);
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
@@ -357,7 +391,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 User usuariAleatori = uArrayList.get(linea);
                 int idaleatori = usuariAleatori.getId();
                 //Numero aleatorio de intento
-                int id = r.nextInt(10) + 1;
+                //int id = r.nextInt(10) + 1;
                 
                 int linea2 = r.nextInt(lArrayList.size());
                 Levels levelAleatori = lArrayList.get(linea2);
@@ -370,11 +404,21 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
                 int min = (int) jspMin.getValue();
                 int max = (int) jspMax.getValue();
-                int rndInt = r.nextInt(max - min) + min;
-                long plus = TimeUnit.MINUTES.toMillis(rndInt);
+                
+                int max2 = (int) jspMax1.getValue();
+                
+                int rndInt;
+                
+                if(idaleatori2 == 1){
+                    rndInt = r.nextInt(max - min) + min;
+                }else{
+                    rndInt = r.nextInt(max2 - min) + min;
+                }
+                   
+                long plus = TimeUnit.SECONDS.toMillis(rndInt);
                 Timestamp rand2 = new Timestamp(rand.getTime() + plus);
                 JSONObject jo = new JSONObject();
-                jo.put("idIntent",id);
+                jo.put("idIntent",i+1);
                 jo.put("idUsuari",idaleatori);
                 jo.put("idNivell",idaleatori2);
                 jo.put("inicioIntentTimestamp",rand);
@@ -382,7 +426,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 ja.put(jo);
             }
             mainObj.put("Attempts", ja);
-            data.dataAttemptJson(mainObj.toString());
+            data.dataAttemptJson(mainObj.toString(4));
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -459,6 +503,79 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    public void createSQL(){
+        Data data = new Data(this, true);
+        ArrayList<User> uArrayList = new ArrayList<>();
+        ArrayList<Levels> lArrayList = new ArrayList<>();
+        try {
+            da.accessUser(uArrayList,txtUserChooser);
+            da.accessLevel(lArrayList,txtLevelChooser);
+            for(int i = 0; i <= Integer.parseInt(txtRegister.getText()) - 1;i++){
+                Random r = new Random();
+                int linea = r.nextInt(uArrayList.size());
+                User usuariAleatori = uArrayList.get(linea);
+                int idaleatori = usuariAleatori.getId();
+                //Numero aleatorio de intento
+                //int id = 0;
+                
+                int linea2 = r.nextInt(lArrayList.size());
+                Levels levelAleatori = lArrayList.get(linea2);
+                int idaleatori2 = levelAleatori.getId();
+                
+                
+                long offset = Timestamp.valueOf(txtDateIni.getText()).getTime();
+                long end = Timestamp.valueOf(txtDateFinal.getText()).getTime();
+                long diff = end - offset + 1;
+                Timestamp rand = new Timestamp(offset + (long)(Math.random() * diff));
+                int min = (int) jspMin.getValue();
+                int max = (int) jspMax.getValue();
+                int max2 = (int) jspMax1.getValue();
+                
+                int rndInt;
+                
+                if(idaleatori2 == 1){
+                    rndInt = r.nextInt(max - min) + min;
+                }else{
+                    rndInt = r.nextInt(max2 - min) + min;
+                }
+                   
+                long plus = TimeUnit.SECONDS.toMillis(rndInt);
+                Timestamp rand2 = new Timestamp(rand.getTime() + plus);
+                data.dataAttemptSQL(i + 1,idaleatori,idaleatori2,rand,rand2);
+            }
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void createResultSQL(){
+          Data data = new Data(this, true);
+        ArrayList<Attempt> aArrayList = new ArrayList<>();
+        try {
+            da.accessAttempt(aArrayList,txtAttemptsChooser);
+            for(Attempt u : aArrayList){
+                Random r = new Random();
+                int eina1 = r.nextInt(2);
+                int eina2 = r.nextInt(2);
+                int eina3 = r.nextInt(2);
+                int eina4 = r.nextInt(2);
+                int eina5 = r.nextInt(2);   
+                int eina6 = r.nextInt(2);   
+                int eina7 = r.nextInt(2);   
+                int eina8 = r.nextInt(2);   
+                
+                data.dataResultSQL(u.getIdIntent(),u.getIdUsuari(),u.getIdNivell(),eina1,eina2,eina3,eina4,eina5,eina6,eina7,eina8);
+            }
+            data.setVisible(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -510,6 +627,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cmbFormat;
     private javax.swing.JComboBox<String> cmbFormat1;
     private javax.swing.JSpinner jspMax;
+    private javax.swing.JSpinner jspMax1;
     private javax.swing.JSpinner jspMin;
     private javax.swing.JLabel lblDates;
     private javax.swing.JLabel lblFile;
@@ -517,6 +635,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
     private javax.swing.JLabel lblFinal;
     private javax.swing.JLabel lblInitial;
     private javax.swing.JLabel lblMax;
+    private javax.swing.JLabel lblMax1;
     private javax.swing.JLabel lblMin;
     private javax.swing.JLabel lblRegisterNum;
     private javax.swing.JLabel lblResultsData;
