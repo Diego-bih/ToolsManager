@@ -101,7 +101,7 @@ public class Data extends javax.swing.JDialog {
      }
       
       public void dataInventorySQL(int id, int ideina1, int ideina2, int ideina3,int ideina4,int ideina5,int ideina6,int ideina7,int ideina8){
-         txaData.append("INSERT INTO USERS" + "(idUsuari,idEina1,idaEina2,idEina3,idEina4,idEina5,idEina6,idEina7,idEina8)" + " VALUES(" + id + "," + ideina1 + "," + ideina2 + "," + ideina3 + "," + ideina4 + "," + ideina5  + "," + ideina6 + "," + ideina7 + "," + ideina8 + "," + ideina1 + ")" + ";" + "\n" + "\n");
+         txaData.append("INSERT INTO INVENTORY" + "(idUsuari,idEina1,idaEina2,idEina3,idEina4,idEina5,idEina6,idEina7,idEina8)" + " VALUES(" + id + "," + ideina1 + "," + ideina2 + "," + ideina3 + "," + ideina4 + "," + ideina5  + "," + ideina6 + "," + ideina7 + "," + ideina8 + "," + ideina1 + ")" + ";" + "\n" + "\n");
       }
 
 
