@@ -297,7 +297,7 @@ public class DataInventoryDialog extends javax.swing.JDialog {
                 jo.put("idEina7",r.getIdentificaeina7());
                 jo.put("idEina8",r.getIdentificaeina8());
                 ja.put(jo);
-                //data.datainventory(r.getIdUsuari(), r.getIdentificaeina1(), r.getIdentificaeina2(),r.getIdentificaeina3(),r.getIdentificaeina4(),r.getIdentificaeina5(),r.getIdentificaeina6(),r.getIdentificaeina7(),r.getIdentificaeina8());
+                data.datainventory(r.getIdUsuari(), r.getIdentificaeina1(), r.getIdentificaeina2(),r.getIdentificaeina3(),r.getIdentificaeina4(),r.getIdentificaeina5(),r.getIdentificaeina6(),r.getIdentificaeina7(),r.getIdentificaeina8());
             }
             mainObj.put("Inventory", ja);
             data.dataInventoryJson(mainObj.toString(4));
@@ -365,7 +365,7 @@ public class DataInventoryDialog extends javax.swing.JDialog {
                         r.setIdentificaeina8(lArrayList.get(1).getIdEina8()); 
                     }
                 }
-                data.dataInventorySQL(r.getIdUsuari(), r.getIdentificaeina1(), r.getIdentificaeina2(),r.getIdentificaeina3(),r.getIdentificaeina4(),r.getIdentificaeina5(),r.getIdentificaeina6(),r.getIdentificaeina7(),r.getIdentificaeina8());
+                //data.dataInventorySQL(r.getIdUsuari(), r.getIdentificaeina1(), r.getIdentificaeina2(),r.getIdentificaeina3(),r.getIdentificaeina4(),r.getIdentificaeina5(),r.getIdentificaeina6(),r.getIdentificaeina7(),r.getIdentificaeina8());
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {

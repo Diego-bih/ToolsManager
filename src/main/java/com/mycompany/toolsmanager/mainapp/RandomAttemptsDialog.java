@@ -566,7 +566,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                 int eina7 = r.nextInt(2);   
                 int eina8 = r.nextInt(2);   
                 
-                data.dataResultSQL(u.getIdIntent(),u.getIdUsuari(),u.getIdNivell(),eina1,eina2,eina3,eina4,eina5,eina6,eina7,eina8);
+                data.dataResultSQL(u.getIdIntent(),eina1,eina2,eina3,eina4,eina5,eina6,eina7,eina8);
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
