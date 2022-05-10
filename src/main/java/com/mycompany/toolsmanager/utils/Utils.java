@@ -8,6 +8,7 @@ package com.mycompany.toolsmanager.utils;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -72,12 +73,19 @@ public class Utils {
         ImageIcon imageIcon = new ImageIcon(outputImage);
         return imageIcon;
     }
+    
+    public File newFile(String file) {
+        File targetFile = new File(file);
+        return targetFile;
+    }
+    
     public void fileChooserCSV(JTextField txt, Component c){
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("CSV Files", "csv");
         fileChooser.setFileFilter(fileFilter);
+        fileChooser.setSelectedFile(newFile(".csv"));
         int returnOption = fileChooser.showOpenDialog(c);
         if (returnOption == JFileChooser.APPROVE_OPTION)
-        txt.setText(fileChooser.getSelectedFile().getAbsolutePath());;
+        txt.setText(fileChooser.getSelectedFile().getAbsolutePath());;      
     }
 }
