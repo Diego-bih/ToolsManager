@@ -5,10 +5,18 @@
  */
 package com.mycompany.toolsmanager.utils;
 
+import com.mycompany.toolsmanager.constants.Constants;
 import java.awt.Component;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -88,4 +96,40 @@ public class Utils {
         if (returnOption == JFileChooser.APPROVE_OPTION)
         txt.setText(fileChooser.getSelectedFile().getAbsolutePath());;      
     }
+    
+    public static ImageIcon resizeImageIcon(String image, int desiredWidth, int desiredHeight) {
+        int newHeight = 0;
+        int newWidth = 0;
+        BufferedImage originalBufferedImage = null;
+        ImageIcon icon = null;
+
+        try {
+            originalBufferedImage = ImageIO.read(new URL("https://spdvisa.blob.core.windows.net/eines/"+ image));
+            float aspectRatio = (float) originalBufferedImage.getWidth() / originalBufferedImage.getHeight();
+            if (originalBufferedImage.getWidth() > originalBufferedImage.getHeight()) {
+                newWidth = desiredWidth;
+                newHeight = Math.round(desiredWidth / aspectRatio);
+            } else {
+                newHeight = desiredHeight;
+                newWidth = Math.round(desiredHeight * aspectRatio);
+            }
+            BufferedImage resultingImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+            Graphics2D graphics2D = resultingImage.createGraphics();
+            graphics2D.drawImage(originalBufferedImage, 0, 0, newWidth, newHeight, null);
+            graphics2D.dispose();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(resultingImage, "PNG", baos);
+            icon = new ImageIcon(baos.toByteArray());
+
+            baos.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Utils.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return icon;
+    }
 }
+    
+    
+

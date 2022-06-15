@@ -5,6 +5,7 @@
  */
 package com.mycompany.toolsmanager.showdata;
 
+import com.mycompany.toolsmanager.models.UEina;
 import java.awt.Desktop;
 import java.awt.Dialog;
 import java.io.BufferedWriter;
@@ -12,8 +13,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -74,7 +81,7 @@ public class Data extends javax.swing.JDialog {
     /*public void datainventory(int id, int ideina1, int ideina2, int ideina3,int ideina4,int ideina5,int ideina6,int ideina7,int ideina8){   
        txaData.append(String.valueOf(id) + "," + String.valueOf(ideina1) + "," + String.valueOf(ideina2) + "," + String.valueOf(ideina3) + "," + String.valueOf(ideina4) + "," + String.valueOf(ideina5) + "," + String.valueOf(ideina6) + "," + String.valueOf(ideina7) + "," + String.valueOf(ideina8) +"\n");
     }*/
-    public void datainventory(int id, int ideina){
+   public void datainventory(int id, int ideina){
         txaData.append(String.valueOf(id) + "," + String.valueOf(ideina) +"\n");
     }
      
@@ -96,15 +103,15 @@ public class Data extends javax.swing.JDialog {
      public void dataSQL(int id, Timestamp timeini, Timestamp timefin){
          txaData.append("INSERT INTO dbo.sessions" + "(id_usuari,login,logout)" + " VALUES(" + id + ",'" + timeini  + "','" + timefin + "')" + ";" + "\n" + "\n");
      }
-     public void dataAttemptSQL(int id,int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){
-         txaData.append("INSERT INTO dbo.intents" + "(id,id_usuari,id_nivell,inicioIntent,finIntent)" + " VALUES(" + id + "," + idusuari + "," + idnivell + ",'" + timeini + "','" + timefin + "')" + ";" + "\n" + "\n");
+     public void dataAttemptSQL(int idusuari,int idnivell, Timestamp timeini, Timestamp timefin){
+         txaData.append("INSERT INTO dbo.Intents" + "(id_usuari,id_nivell,inicioIntent,finIntent)" + " VALUES(" +  idusuari + "," + idnivell + ",'" + timeini + "','" + timefin + "')" + ";" + "\n" + "\n");
      }
       public void dataResultSQL(int idIntent,int e1, int e2, int e3, int e4, int e5, int e6, int e7, int e8){
-         txaData.append("INSERT INTO dbo.resultats" + "(id_intent,eina2,eina3,eina4,eina5,eina6,eina7,eina8)" + " VALUES(" + idIntent + "," + e1 + "," + e2 + "," + e3 + "," + e4  + "," + e5 + "," + e6 + "," + e7 + "," + e8 + ")" + ";" + "\n" + "\n");
+         txaData.append("INSERT INTO dbo.resultats" + "(id_intent,eina1,eina2,eina3,eina4,eina5,eina6,eina7,eina8)" + " VALUES(" + idIntent + "," + e1 + "," + e2 + "," + e3 + "," + e4  + "," + e5 + "," + e6 + "," + e7 + "," + e8 + ")" + ";" + "\n" + "\n");
      }
       
       public void dataInventorySQL(int id, int ideina){
-         txaData.append("INSERT INTO dbo.inventari" + "(id_usuari,id_eina)" + " VALUES(" + id + "," + ideina + ")" + ";" + "\n" + "\n");
+         txaData.append("INSERT INTO dbo.Inventari" + "(id_usuari,id_eina)" + " VALUES(" + id + "," + ideina + ")" + ";" + "\n" + "\n");
       }
 
 

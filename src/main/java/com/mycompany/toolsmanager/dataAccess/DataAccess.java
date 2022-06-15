@@ -5,6 +5,8 @@
  */
 package com.mycompany.toolsmanager.dataAccess;
 
+import static com.mycompany.toolsmanager.constants.Constants.LEVELSPATH;
+import static com.mycompany.toolsmanager.constants.Constants.TOOLSPATH;
 import static com.mycompany.toolsmanager.constants.Constants.USERSPATH;
 import com.mycompany.toolsmanager.models.Attempt;
 import com.mycompany.toolsmanager.models.Levels;
@@ -59,7 +61,23 @@ public class DataAccess {
             Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
-    
+       public static void accessUser2(ArrayList<User> arr) throws IOException{
+        String cadena;
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader(USERSPATH));
+            br.readLine();
+            while ((cadena = br.readLine()) != null) {
+                String[] spliter = cadena.split(",");
+                arr.add(new User(Integer.parseInt(spliter[0])));
+                //break;
+            }
+            br.close();
+    }   catch (FileNotFoundException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }}
+       
+        
     public static void accessLevel(ArrayList<Levels> arr, JTextField txt) throws IOException{
         String cadena;
         BufferedReader br;

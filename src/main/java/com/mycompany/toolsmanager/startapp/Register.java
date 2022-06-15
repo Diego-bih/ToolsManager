@@ -28,6 +28,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -246,6 +247,7 @@ public class Register extends javax.swing.JDialog {
         // TODO add your handling code here:
         Login login = new Login(this, true);
         login.setVisible(true);
+        login.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
     }//GEN-LAST:event_formWindowClosed
 
     /**

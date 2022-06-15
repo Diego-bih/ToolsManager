@@ -541,7 +541,7 @@ public class RandomAttemptsDialog extends javax.swing.JDialog {
                    
                 long plus = TimeUnit.SECONDS.toMillis(rndInt);
                 Timestamp rand2 = new Timestamp(rand.getTime() + plus);
-                data.dataAttemptSQL(i + 1,idaleatori,idaleatori2,rand,rand2);
+                data.dataAttemptSQL(idaleatori,idaleatori2,rand,rand2);
             }
             data.setVisible(true);
         } catch (FileNotFoundException ex) {
